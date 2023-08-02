@@ -3,6 +3,14 @@ module.exports = {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        geometria: ["Geometria", "Arial", "sans-serif"]
+      },
+      colors: {
+        primary: "#222222",
+        secondary: "#9d9d9d",
+        alarm: "#e02d71"
+      },
       maxWidth: {
         "7xl": "1200px"
       },

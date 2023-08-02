@@ -1,10 +1,19 @@
 <template>
-  <header class="bg-orange-100">
+  <header class="bg-orange-100/50">
     <div class="main-container">
-      <div class="py-6 grid grid-cols-layout-header gap-x-10 justify-between">
-        <span class="header__info">Каталог</span>
+      <div
+        class="py-6 grid grid-cols-layout-header gap-x-10 justify-items-center items-center"
+      >
+        <f4 class="order-1 mr-auto uppercase text-xs">Каталог</f4>
 
-        <a class="header__logo" href="#">
+        <a
+          class="order-3 block ml-auto text-sm text-black"
+          href="tel:8 800 600 90 09"
+        >
+          8 800 600 90 09
+        </a>
+
+        <a class="block order-2" href="#">
           <svg
             width="116"
             height="34"
@@ -29,17 +38,19 @@
           </svg>
         </a>
 
-        <a class="header__tel" href="tel:8 800 600 90 09"> 8 800 600 90 09 </a>
-
         <a
-          class="header__cart"
-          href="cart.html"
+          class="order-4 block relative w-[25px] h-[27px]"
+          href="#"
           aria-label="Корзина с товарами"
         >
           <svg width="19" height="24">
             <use xlink:href="#icon-cart"></use>
           </svg>
-          <span class="header__count" aria-label="Количество товаров">3</span>
+          <span
+            class="absolute right-0 bottom-0 block min-w-[13px] h-[13px] p-1 bg-alarm rounded-full text-white text-center font-medium text-[7px] leading-none"
+            aria-label="Количество товаров"
+            >3</span
+          >
         </a>
       </div>
     </div>

@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Geometria";
+  src: url(../public/fonts/Geometria-Bold.woff2);
+}
+@font-face {
+  font-family: "Geometria";
+  src: url(../public/fonts/Geometria-ExtraBold.woff2);
+}
+@font-face {
+  font-family: "Geometria";
+  src: url(../public/fonts/Geometria-Light.woff2);
+}
+@font-face {
+  font-family: "Geometria";
+  src: url(../public/fonts/Geometria-Medium.woff2);
+}
+@font-face {
+  font-family: "Geometria";
+  src: url(../public/fonts/Geometria-Regular.woff2);
+}
+@font-face {
+  font-family: "Circe";
+  src: url(../public/fonts/Circe-Bold.woff2);
+}
+@font-face {
+  font-family: "Circe";
+  src: url(../public/fonts/Circe-Regular.woff2);
+}
+
 .main-container {
   @apply max-w-7xl min-w-[320px] px-4 mx-auto;
 }
