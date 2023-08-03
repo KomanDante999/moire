@@ -4,7 +4,16 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        geometria: ["Geometria", "Arial", "sans-serif"]
+        geometria: ["Geometria", "Arial", "sans-serif"],
+        // geometriaBold: ["Geometria", "Arial", "sans-serif", "bold"],
+        // geometriaExtraBold: ["Geometria", "800"],
+        // geometriaLight: ["Geometria", "Arial", "sans-serif", "lighter"],
+        // geometriaMedium: ["Geometria", "Arial", "sans-serif", "500"],
+        circe: ["Circe", "normal"],
+        circeBold: ["Circe", "bold"]
+      },
+      screens: {
+        mob: "416px"
       },
       colors: {
         primary: "#222222",
@@ -17,7 +26,8 @@ module.exports = {
       gridTemplateColumns: {
         "layout-header": "1fr 1fr 1fr 25px",
         "layout-header-mobil": "25px 1fr 25px",
-        "layout-foter": "2fr 1fr"
+        "layout-main": "250px 1fr",
+        "layout-footer": "1.8fr 1fr"
       },
       gridTemplateRows: {
         "layout-body": "auto 1fr auto"

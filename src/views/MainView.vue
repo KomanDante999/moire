@@ -1,16 +1,28 @@
 <template>
   <main>
-    <div class="content__top">
-      <div class="content__row">
-        <h1 class="content__title">Каталог</h1>
-        <span class="content__info"> 152 товара </span>
+    <div class="main-container">
+      <div class="flex items-center">
+        <h1 class="my-8 font-extrabold text-2xl leading-[54px] uppercase">
+          Каталог
+        </h1>
+        <span class="ml-4 font-light leading-none text-secondary">
+          152 товара
+        </span>
+      </div>
+      <div class="grid grid-cols-layout-main gap-x-5">
+        <ProductFilter />
+        <ProductList />
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import ProductFilter from "@/components/ProductFilter.vue";
+import ProductList from "@/components/ProductList.vue";
+
 export default {
-  name: "MainView"
+  name: "MainView",
+  components: { ProductFilter, ProductList }
 };
 </script>

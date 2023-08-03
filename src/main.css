@@ -5,32 +5,49 @@
 @font-face {
   font-family: "Geometria";
   src: url(../public/fonts/Geometria-Bold.woff2);
+  font-weight: bold;
 }
 @font-face {
   font-family: "Geometria";
   src: url(../public/fonts/Geometria-ExtraBold.woff2);
+  font-weight: 800;
 }
 @font-face {
   font-family: "Geometria";
   src: url(../public/fonts/Geometria-Light.woff2);
+  font-weight: lighter;
 }
 @font-face {
   font-family: "Geometria";
   src: url(../public/fonts/Geometria-Medium.woff2);
+  font-weight: 500;
 }
 @font-face {
   font-family: "Geometria";
   src: url(../public/fonts/Geometria-Regular.woff2);
+  font-weight: normal;
 }
 @font-face {
   font-family: "Circe";
   src: url(../public/fonts/Circe-Bold.woff2);
+  font-weight: bold;
 }
 @font-face {
   font-family: "Circe";
   src: url(../public/fonts/Circe-Regular.woff2);
+  font-weight: normal;
 }
-
-.main-container {
-  @apply max-w-7xl min-w-[320px] px-4 mx-auto;
+@layer components {
+  .body-style {
+    @apply font-geometria text-base leading-snug text-primary;
+  }
+  .main-container {
+    @apply max-w-7xl min-w-[320px] px-4 mx-auto;
+  }
+  .footer-link {
+    @apply text-sm leading-6 border-b-2 border-transparent hover:border-alarm hover:text-alarm/70 focus:outline-none focus:border-alarm active:text-alarm transition-colors duration-300;
+  }
+  .social-link {
+    @apply flex w-5 h-5 items-center justify-center text-secondary hover:text-alarm/70 focus:outline-alarm active:text-alarm transition-colors duration-300;
+  }
 }
