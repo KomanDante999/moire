@@ -1,13 +1,64 @@
 <template>
-  <header class="bg-orange-100/50">
+  <header class="bg-gradient-to-b from-white from-50% to-orange-100">
     <div class="main-container">
       <div
-        class="py-6 grid grid-cols-layout-header gap-x-10 justify-items-center items-center"
+        class="py-6 grid grid-cols-layout-header-mobil sm:grid-cols-layout-header gap-x-10 justify-items-center items-center"
       >
-        <f4 class="order-1 mr-auto uppercase text-xs">Каталог</f4>
+        <!-- burger -->
+        <div class="sm:hidden mr-auto">
+          <!-- btn open-close -->
+          <div>
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </button>
+            <button class="hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- menu -->
+          <nav class="hidden">
+            <f4 class="order-1 mr-auto uppercase text-xs">Каталог</f4>
+            <a
+              class="order-3 block ml-auto text-sm text-black"
+              href="tel:8 800 600 90 09"
+            >
+              8 800 600 90 09
+            </a>
+          </nav>
+        </div>
+
+        <f4 class="hidden sm:block order-1 mr-auto uppercase text-xs"
+          >Каталог</f4
+        >
 
         <a
-          class="order-3 block ml-auto text-sm text-black"
+          class="hidden sm:block order-3 ml-auto text-sm text-black"
           href="tel:8 800 600 90 09"
         >
           8 800 600 90 09

@@ -1,7 +1,9 @@
 <template>
-  <app-header />
-  <main-view />
-  <app-footer />
+  <div class="h-screen grid grid-rows-layout-body">
+    <app-header />
+    <main-view />
+    <app-footer />
+  </div>
 </template>
 
 <style src="./main.css"></style>

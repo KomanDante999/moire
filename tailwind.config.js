@@ -15,7 +15,12 @@ module.exports = {
         "7xl": "1200px"
       },
       gridTemplateColumns: {
-        "layout-header": "1fr 1fr 1fr 25px"
+        "layout-header": "1fr 1fr 1fr 25px",
+        "layout-header-mobil": "25px 1fr 25px",
+        "layout-foter": "2fr 1fr"
+      },
+      gridTemplateRows: {
+        "layout-body": "auto 1fr auto"
       }
     }
   },
