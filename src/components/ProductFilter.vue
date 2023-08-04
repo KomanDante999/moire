@@ -1,26 +1,21 @@
 <template>
-  <aside class="filter">
-    <form class="filter__form form" action="#" method="get">
-      <fieldset class="form__block">
-        <legend class="form__legend">Цена</legend>
-        <label class="form__label form__label--price">
-          <input class="form__input" type="text" name="min-price" value="0" />
-          <span class="form__value">От</span>
+  <aside>
+    <form class="px-6 pb-7" action="#" method="get">
+      <fieldset class="mb-8">
+        <legend class="filter-legend">Цена</legend>
+        <label class="filter-label label-price">
+          <input class="filter-input" name="min-price" value="0" />
+          <span class="filter-cuption">От</span>
         </label>
-        <label class="form__label form__label--price">
-          <input
-            class="form__input"
-            type="text"
-            name="max-price"
-            value="12345"
-          />
-          <span class="form__value">До</span>
+        <label class="filter-label label-price">
+          <input class="filter-input" name="max-price" value="12345" />
+          <span class="filter-cuption">До</span>
         </label>
       </fieldset>
 
-      <fieldset class="form__block">
-        <legend class="form__legend">Категория</legend>
-        <label class="form__label form__label--select">
+      <fieldset class="mb-8">
+        <legend class="filter-legend">Категория</legend>
+        <label class="filter-label filter-label--select">
           <select class="form__select" type="text" name="category">
             <option value="value1">Все категории</option>
             <option value="value2">Футболки</option>
@@ -30,8 +25,8 @@
         </label>
       </fieldset>
 
-      <fieldset class="form__block">
-        <legend class="form__legend">Материал</legend>
+      <fieldset class="mb-8">
+        <legend class="filter-legend">Материал</legend>
         <ul class="check-list">
           <li class="check-list__item">
             <label class="check-list__label">
@@ -92,8 +87,8 @@
         </ul>
       </fieldset>
 
-      <fieldset class="form__block">
-        <legend class="form__legend">Коллекция</legend>
+      <fieldset class="mb-8">
+        <legend class="filter-legend">Коллекция</legend>
         <ul class="check-list">
           <li class="check-list__item">
             <label class="check-list__label">

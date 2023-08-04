@@ -50,4 +50,22 @@
   .social-link {
     @apply flex w-5 h-5 items-center justify-center text-secondary hover:text-alarm/70 focus:outline-alarm active:text-alarm transition-colors duration-300;
   }
+  .filter-legend {
+    @apply mb-3 text-sm leading-none text-neutral-500;
+  }
+  .filter-label {
+    @apply relative block text-primary;
+  }
+  .filter-label:not(:last-child) {
+    @apply mb-5;
+  }
+  .label-price {
+    @apply after:content-['₽'] after:absolute  after:top-8 after:right-6 after:leading-none after:text-primary;
+  }
+  .filter-input {
+    @apply w-full h-16 pt-7 pr-11 pb-3 pl-5 border-transparent rounded-sm bg-neutral-50 text-primary leading-none focus:border-primary focus:ring-transparent hover:bg-neutral-100 transition-colors duration-300;
+  }
+  .filter-cuption {
+    @apply absolute top-2 left-5 text-xs font-light leading-none text-neutral-500;
+  }
 }

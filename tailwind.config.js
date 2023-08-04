@@ -26,7 +26,7 @@ module.exports = {
       gridTemplateColumns: {
         "layout-header": "1fr 1fr 1fr 25px",
         "layout-header-mobil": "25px 1fr 25px",
-        "layout-main": "250px 1fr",
+        "layout-main": "290px 1fr",
         "layout-footer": "1.8fr 1fr"
       },
       gridTemplateRows: {
