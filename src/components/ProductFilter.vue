@@ -15,8 +15,12 @@
 
       <fieldset class="mb-8">
         <legend class="filter-legend">Категория</legend>
-        <label class="filter-label filter-label--select">
-          <select class="form__select" type="text" name="category">
+        <label class="filter-label">
+          <select
+            class="filter-input h-[52px] py-[14px] pr-9 pl-[18px]"
+            type="text"
+            name="category"
+          >
             <option value="value1">Все категории</option>
             <option value="value2">Футболки</option>
             <option value="value3">Бюстгалтеры</option>
@@ -27,7 +31,7 @@
 
       <fieldset class="mb-8">
         <legend class="filter-legend">Материал</legend>
-        <ul class="check-list">
+        <ul>
           <li class="check-list__item">
             <label class="check-list__label">
               <input
@@ -149,10 +153,10 @@
         </ul>
       </fieldset>
 
-      <button class="filter__submit button button--primery" type="submit">
+      <button class="w-full mb-4 button button-primary bg-alarm" type="submit">
         Применить
       </button>
-      <button class="filter__reset button button--second" type="button">
+      <button class="w-36 p-4 button button-second" type="button">
         Сбросить
       </button>
     </form>

@@ -9,8 +9,8 @@ module.exports = {
         // geometriaExtraBold: ["Geometria", "800"],
         // geometriaLight: ["Geometria", "Arial", "sans-serif", "lighter"],
         // geometriaMedium: ["Geometria", "Arial", "sans-serif", "500"],
-        circe: ["Circe", "normal"],
-        circeBold: ["Circe", "bold"]
+        circe: ["Circe"]
+        // circeBold: ["Circe", "bold"]
       },
       screens: {
         mob: "416px"
@@ -18,6 +18,8 @@ module.exports = {
       colors: {
         primary: "#222222",
         secondary: "#9d9d9d",
+        superlite: "#d1d1d1",
+        bordLite: "#e2e2e2;",
         alarm: "#e02d71"
       },
       maxWidth: {

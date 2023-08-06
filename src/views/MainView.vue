@@ -9,7 +9,7 @@
           152 товара
         </span>
       </div>
-      <div class="grid grid-cols-layout-main gap-x-5">
+      <div class="grid grid-cols-1 sm:grid-cols-layout-main gap-x-5 gap-y-10">
         <ProductFilter />
         <ProductList />
       </div>
