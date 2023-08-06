@@ -9,7 +9,9 @@
           class="grid grid-cols-1 mob:grid-cols-2 gap-y-3 gap-x-5 sm:grid-cols-3 md:gap-y-7"
         >
           <li>
-            <a class="footer-link" href="#"> Каталог </a>
+            <router-link class="footer-link" :to="{ name: 'home' }">
+              Каталог
+            </router-link>
           </li>
           <li>
             <a class="footer-link" href="tel:88006009009"> 8 800 600 90 09 </a>

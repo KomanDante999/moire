@@ -43,7 +43,9 @@
           </div>
           <!-- menu -->
           <nav class="hidden">
-            <f4 class="order-1 mr-auto uppercase text-xs">Каталог</f4>
+            <router-link :to="{ name: 'home' }">
+              <h4 class="order-1 mr-auto uppercase text-xs">Каталог</h4>
+            </router-link>
             <a
               class="order-3 block ml-auto text-sm text-black"
               href="tel:8 800 600 90 09"
@@ -53,9 +55,11 @@
           </nav>
         </div>
 
-        <f4 class="hidden sm:block order-1 mr-auto uppercase text-xs"
-          >Каталог</f4
-        >
+        <router-link :to="{ name: 'home' }">
+          <h4 class="hidden sm:block order-1 mr-auto uppercase text-xs">
+            Каталог
+          </h4>
+        </router-link>
 
         <a
           class="hidden sm:block order-3 ml-auto text-sm text-black"
@@ -88,10 +92,10 @@
             </defs>
           </svg>
         </a>
-
-        <a
+        <!-- cart -->
+        <router-link
+          :to="{ name: 'cart' }"
           class="order-4 block relative w-[25px] h-[27px]"
-          href="#"
           aria-label="Корзина с товарами"
         >
           <svg width="19" height="24">
@@ -102,7 +106,7 @@
             aria-label="Количество товаров"
             >3</span
           >
-        </a>
+        </router-link>
       </div>
     </div>
   </header>

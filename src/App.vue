@@ -1,7 +1,13 @@
 <template>
   <div class="h-screen grid grid-rows-layout-body">
     <app-header />
-    <main-view />
+
+    <main>
+      <div class="main-container">
+        <router-view />
+      </div>
+    </main>
+
     <app-footer />
   </div>
 </template>
@@ -11,9 +17,9 @@
 <script>
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
-import MainView from "@/views/MainView.vue";
+
 export default {
   name: "App",
-  components: { AppHeader, AppFooter, MainView }
+  components: { AppHeader, AppFooter }
 };
 </script>

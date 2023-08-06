@@ -12,9 +12,9 @@
           />
         </a>
 
-        <h3 class="max-w-[270px] mb-2">
-          <a href="#">Кружевной бюстгалтер без косточек </a>
-        </h3>
+        <router-link :to="{ name: 'product' }">
+          <h3 class="max-w-[270px] mb-2">Кружевной бюстгалтер без косточек</h3>
+        </router-link>
 
         <span class="catalog__price"> 3 690 ₽ </span>
 
