@@ -3,7 +3,7 @@
     <app-header />
 
     <main>
-      <div class="main-container">
+      <div class="main-container pt-8 pb-20">
         <router-view />
       </div>
     </main>

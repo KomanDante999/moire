@@ -1,6 +1,7 @@
 <template>
-  <div class="content__top">
-    <ul class="breadcrumbs">
+  <div class="mb-9">
+    <!-- breadcrumbs -->
+    <ul class="flex items-center flex-wrap">
       <li class="breadcrumbs__item">
         <a class="breadcrumbs__link" href="index.html"> Каталог </a>
       </li>
@@ -13,9 +14,9 @@
     </ul>
   </div>
 
-  <section class="item">
-    <div class="item__pics pics">
-      <div class="pics__wrapper">
+  <section class="grid grid-cols-2 gap-x-7 gap-y-7 items-start">
+    <div>
+      <div class="mb-5">
         <img
           width="570"
           height="570"
@@ -24,8 +25,8 @@
           alt="Название товара"
         />
       </div>
-      <ul class="pics__list">
-        <li class="pics__item">
+      <ul class="grid grid-cols-5 gap-5">
+        <li>
           <a href="" class="pics__link pics__link--current">
             <img
               width="98"
@@ -36,7 +37,7 @@
             />
           </a>
         </li>
-        <li class="pics__item">
+        <li>
           <a href="" class="pics__link">
             <img
               width="98"
