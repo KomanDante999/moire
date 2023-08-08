@@ -51,85 +51,47 @@
       </ul>
     </div>
 
-    <div class="item__info">
-      <span class="item__code">Артикул: 150030</span>
-      <h2 class="item__title">Смартфон Xiaomi Mi Mix 3 6/128GB</h2>
-      <div class="item__form">
-        <form class="form" action="#" method="POST">
-          <div class="item__row item__row--center">
-            <div class="form__counter">
-              <button type="button" aria-label="Убрать один товар">
+    <div>
+      <span class="text-sm leading-none text-secondary">Артикул: 150030</span>
+      <h2 class="title-h2 mt-3 mb-5">Носки с принтом мороженое</h2>
+      <div>
+        <form class="" action="#" method="POST">
+          <div class="flex justify-start items-center">
+            <div class="flex items-center w-[150px] h-[70px] mr-5">
+              <button
+                class="btn-round"
+                type="button"
+                aria-label="Убрать один товар"
+              >
                 <svg width="12" height="12" fill="currentColor">
                   <use xlink:href="#icon-minus"></use>
                 </svg>
               </button>
 
-              <input type="text" value="1" name="count" />
+              <input class="couter-input" value="1" name="count" />
 
-              <button type="button" aria-label="Добавить один товар">
+              <button
+                class="btn-round"
+                type="button"
+                aria-label="Добавить один товар"
+              >
                 <svg width="12" height="12" fill="currentColor">
                   <use xlink:href="#icon-plus"></use>
                 </svg>
               </button>
             </div>
 
-            <b class="item__price"> 18 990 ₽ </b>
+            <b class="price-main"> 18 990 ₽ </b>
           </div>
 
-          <div class="item__row">
-            <fieldset class="form__block">
-              <legend class="form__legend">Цвет</legend>
-              <ul class="colors colors--black">
-                <li class="colors__item">
-                  <label class="colors__label">
-                    <input
-                      class="colors__radio sr-only"
-                      type="radio"
-                      name="color-item"
-                      value="blue"
-                      checked="false"
-                    />
-                    <span
-                      class="colors__value"
-                      style="background-color: #73b6ea"
-                    >
-                    </span>
-                  </label>
-                </li>
-                <li class="colors__item">
-                  <label class="colors__label">
-                    <input
-                      class="colors__radio sr-only"
-                      type="radio"
-                      name="color-item"
-                      value="yellow"
-                    />
-                    <span
-                      class="colors__value"
-                      style="background-color: #ffbe15"
-                    >
-                    </span>
-                  </label>
-                </li>
-                <li class="colors__item">
-                  <label class="colors__label">
-                    <input
-                      class="colors__radio sr-only"
-                      type="radio"
-                      name="color-item"
-                      value="gray" />
-                    <span
-                      class="colors__value"
-                      style="background-color: #939393"
-                    >
-                    </span
-                  ></label>
-                </li>
-              </ul>
+          <div class="flex justify-start items-start">
+            <fieldset class="form__block mr-5">
+              <legend class="form-legend">Цвет</legend>
+              <FormSelectColors />
             </fieldset>
 
             <fieldset class="form__block">
-              <legend class="form__legend">Размер</legend>
+              <legend class="form-legend">Размер</legend>
               <label class="form__label form__label--small form__label--select">
                 <select class="form__select" type="text" name="category">
                   <option value="value1">37-39</option>
@@ -180,7 +142,10 @@
 </template>
 
 <script>
+import FormSelectColors from "@/components/FormSelectColors.vue";
+
 export default {
-  name: "ProductView"
+  name: "ProductView",
+  components: { FormSelectColors }
 };
 </script>

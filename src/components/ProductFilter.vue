@@ -2,7 +2,7 @@
   <aside>
     <form class="px-6 pb-7" action="#" method="get">
       <fieldset class="mb-8">
-        <legend class="filter-legend">Цена</legend>
+        <legend class="form-legend">Цена</legend>
         <label class="filter-label label-price">
           <input class="filter-input" name="min-price" value="0" />
           <span class="filter-cuption">От</span>
@@ -14,7 +14,7 @@
       </fieldset>
 
       <fieldset class="mb-8">
-        <legend class="filter-legend">Категория</legend>
+        <legend class="form-legend">Категория</legend>
         <label class="filter-label">
           <select
             class="filter-input h-[52px] py-[14px] pr-9 pl-[18px]"
@@ -30,7 +30,7 @@
       </fieldset>
 
       <fieldset class="mb-8">
-        <legend class="filter-legend">Материал</legend>
+        <legend class="form-legend">Материал</legend>
         <ul>
           <li class="check-list__item">
             <label class="check-list__label">
@@ -92,7 +92,7 @@
       </fieldset>
 
       <fieldset class="mb-8">
-        <legend class="filter-legend">Коллекция</legend>
+        <legend class="form-legend">Коллекция</legend>
         <ul class="check-list">
           <li class="check-list__item">
             <label class="check-list__label">

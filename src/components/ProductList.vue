@@ -11,58 +11,17 @@
             alt="Название товара"
           />
         </a>
+        <div class="flex flex-col items-start">
+          <router-link :to="{ name: 'product' }">
+            <h3 class="max-w-[270px] mb-2">
+              Кружевной бюстгалтер без косточек
+            </h3>
+          </router-link>
 
-        <router-link :to="{ name: 'product' }">
-          <h3 class="max-w-[270px] mb-2">Кружевной бюстгалтер без косточек</h3>
-        </router-link>
+          <span class="catalog__price"> 3 690 ₽ </span>
 
-        <span class="catalog__price"> 3 690 ₽ </span>
-
-        <ul class="select-colors">
-          <li class="select-colors__item">
-            <label class="select-colors__label" tabindex="0">
-              <input
-                class="select-colors__input sr-only"
-                type="radio"
-                name="color-1"
-                value="#73B6EA"
-                checked=""
-              />
-              <span
-                class="select-colors__value"
-                style="background-color: #73b6ea"
-              >
-              </span>
-            </label>
-          </li>
-          <li class="select-colors__item">
-            <label class="select-colors__label" tabindex="0">
-              <input
-                class="select-colors__input sr-only"
-                type="radio"
-                name="color-1"
-                value="#8BE000"
-              />
-              <span
-                class="select-colors__value"
-                style="background-color: #8be000"
-              >
-              </span>
-            </label>
-          </li>
-          <li class="select-colors__item">
-            <label class="select-colors__label" tabindex="0">
-              <input
-                class="select-colors__input sr-only"
-                type="radio"
-                name="color-1"
-                value="#222"
-              />
-              <span class="select-colors__value" style="background-color: #222">
-              </span>
-            </label>
-          </li>
-        </ul>
+          <form-select-colors />
+        </div>
       </li>
 
       <li>
@@ -747,5 +706,7 @@
 </template>
 
 <script>
-export default {};
+import FormSelectColors from "@/components/FormSelectColors.vue";
+
+export default { components: { FormSelectColors } };
 </script>

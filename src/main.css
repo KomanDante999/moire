@@ -44,19 +44,30 @@
   .main-container {
     @apply max-w-7xl min-w-[320px] px-4 mx-auto;
   }
+  /* text */
   .title-main {
     @apply my-2 font-extrabold text-2xl leading-[54px] uppercase;
+  }
+  .title-h2 {
+    @apply font-normal text-[40px] leading-[50px];
   }
   .product-count {
     @apply ml-4 font-light leading-none text-secondary;
   }
+  .price-main {
+    @apply font-medium text-[40px] leading-[1];
+  }
+  display: block;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1;
   .footer-link {
     @apply text-sm leading-6 border-b-2 border-transparent hover:border-alarm hover:text-alarm/70 focus:outline-none focus:border-alarm active:text-alarm transition-colors duration-300;
   }
   .social-link {
     @apply flex w-5 h-5 items-center justify-center text-secondary hover:text-alarm/70 focus:outline-alarm active:text-alarm transition-colors duration-300;
   }
-  .filter-legend {
+  .form-legend {
     @apply mb-3 text-sm leading-none text-neutral-500;
   }
   .filter-label {
@@ -98,6 +109,7 @@
   .check-list__check:checked ~ .check-list__desc::after {
     @apply opacity-100;
   }
+  /* button */
   .button {
     @apply py-6 px-4 font-circe font-bold uppercase transition-colors duration-300 focus:outline-none;
   }
@@ -112,6 +124,11 @@
   }
   .button-second:focus:not(:hover) {
     @apply border-alarm;
+  }
+  .btn-round {
+    @apply flex items-center justify-center shrink-0 w-[37px] h-[37px] border border-bordLite rounded-full 
+    transition-colors duration-300 focus:outline-none 
+    focus:border-primary hover:bg-primary hover:text-white active:border-alarm active:text-alarm;
   }
   .catalog__pic {
     @apply block max-w-[270px] max-h-[350px] mb-5;
@@ -147,7 +164,7 @@
     rounded-full transition-colors duration-300 focus:outline-none;
   }
   .pagination__link--events {
-    @apply focus:text-primary hover:text-primary hover:bg-orange-100/30 active:bg-orange-100;
+    @apply focus:text-primary focus:outline-none hover:text-primary hover:bg-orange-100/30 active:bg-orange-100;
   }
   .pagination__link-arrow {
     @apply border border-bordLite;
@@ -162,10 +179,10 @@
     @apply pr-9 after:content-['—'] after:absolute after:top-1/2 after:right-3 after:-translate-y-1/2 after:text-secondary;
   }
   .breadcrumbs__link {
-    @apply text-sm leading-none text-secondary transition-colors duration-300 focus:text-primary hover:text-primary;
+    @apply text-sm leading-none text-secondary transition-colors duration-300 focus:text-primary focus:outline-none hover:text-primary;
   }
   .pics__link {
-    @apply block pb-1 border-b-4 border-transparent focus:border-b-alarm hover:border-b-alarm;
+    @apply block pb-1 border-b-4 border-transparent focus:outline-none focus:border-b-alarm hover:border-b-alarm;
   }
   .pics__link--current {
     @apply border-b-alarm;
@@ -173,4 +190,7 @@
 }
 .pagination__link--disabled {
   @apply opacity-60 cursor-not-allowed;
+}
+.couter-input {
+  @apply w-[70px] h-[70px] py-6 px-2 text-2xl leading-none text-center border-transparent focus:border-transparent focus:ring-transparent focus:outline-none;
 }

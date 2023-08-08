@@ -5,12 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         geometria: ["Geometria", "Arial", "sans-serif"],
-        // geometriaBold: ["Geometria", "Arial", "sans-serif", "bold"],
-        // geometriaExtraBold: ["Geometria", "800"],
-        // geometriaLight: ["Geometria", "Arial", "sans-serif", "lighter"],
-        // geometriaMedium: ["Geometria", "Arial", "sans-serif", "500"],
         circe: ["Circe"]
-        // circeBold: ["Circe", "bold"]
       },
       screens: {
         mob: "416px"
@@ -29,7 +24,8 @@ module.exports = {
         "layout-header": "1fr 1fr 1fr 25px",
         "layout-header-mobil": "25px 1fr 25px",
         "layout-main": "290px 1fr",
-        "layout-footer": "1.8fr 1fr"
+        "layout-footer": "1.8fr 1fr",
+        "2auto": "auto auto"
       },
       gridTemplateRows: {
         "layout-body": "auto 1fr auto"
