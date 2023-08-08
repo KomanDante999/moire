@@ -57,10 +57,6 @@
   .price-main {
     @apply font-medium text-[40px] leading-[1];
   }
-  display: block;
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 1;
   .footer-link {
     @apply text-sm leading-6 border-b-2 border-transparent hover:border-alarm hover:text-alarm/70 focus:outline-none focus:border-alarm active:text-alarm transition-colors duration-300;
   }
@@ -79,11 +75,13 @@
   .label-price {
     @apply after:content-['₽'] after:absolute  after:top-8 after:right-6 after:leading-none after:text-primary;
   }
-  .filter-input {
-    @apply w-full h-16 pt-7 pr-11 pb-3 pl-5 border-transparent rounded-sm bg-neutral-50 text-primary leading-none focus:border-primary focus:ring-transparent hover:bg-neutral-200 transition-colors duration-300;
-  }
   .filter-cuption {
     @apply absolute top-2 left-5 text-xs font-light leading-none text-neutral-500;
+  }
+  /* form */
+  .form-input-style {
+    @apply w-full h-16 pt-7 pr-11 pb-3 pl-5 border-transparent rounded-sm bg-neutral-50 text-primary leading-none 
+    focus:border-primary focus:ring-red-600 hover:bg-neutral-200 transition-colors duration-300 focus:outline-none;
   }
   .check-list__item:not(:last-child) {
     @apply mb-3;

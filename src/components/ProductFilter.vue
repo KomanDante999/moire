@@ -4,11 +4,11 @@
       <fieldset class="mb-8">
         <legend class="form-legend">Цена</legend>
         <label class="filter-label label-price">
-          <input class="filter-input" name="min-price" value="0" />
+          <input class="form-input-style" name="min-price" value="0" />
           <span class="filter-cuption">От</span>
         </label>
         <label class="filter-label label-price">
-          <input class="filter-input" name="max-price" value="12345" />
+          <input class="form-input-style" name="max-price" value="12345" />
           <span class="filter-cuption">До</span>
         </label>
       </fieldset>
@@ -16,16 +16,7 @@
       <fieldset class="mb-8">
         <legend class="form-legend">Категория</legend>
         <label class="filter-label">
-          <select
-            class="filter-input h-[52px] py-[14px] pr-9 pl-[18px]"
-            type="text"
-            name="category"
-          >
-            <option value="value1">Все категории</option>
-            <option value="value2">Футболки</option>
-            <option value="value3">Бюстгалтеры</option>
-            <option value="value4">Носки</option>
-          </select>
+          <FormSelect class="h-[52px] py-[14px] pr-9 pl-[18px]" />
         </label>
       </fieldset>
 
@@ -164,5 +155,7 @@
 </template>
 
 <script>
-export default {};
+import FormSelect from "./FormSelect.vue";
+
+export default { components: { FormSelect } };
 </script>

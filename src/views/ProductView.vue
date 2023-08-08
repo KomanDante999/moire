@@ -93,11 +93,7 @@
             <fieldset class="form__block">
               <legend class="form-legend">Размер</legend>
               <label class="form__label form__label--small form__label--select">
-                <select class="form__select" type="text" name="category">
-                  <option value="value1">37-39</option>
-                  <option value="value2">40-42</option>
-                  <option value="value3">42-50</option>
-                </select>
+                <FormSelect />
               </label>
             </fieldset>
           </div>
@@ -142,10 +138,11 @@
 </template>
 
 <script>
+import FormSelect from "@/components/FormSelect.vue";
 import FormSelectColors from "@/components/FormSelectColors.vue";
 
 export default {
   name: "ProductView",
-  components: { FormSelectColors }
+  components: { FormSelectColors, FormSelect }
 };
 </script>
