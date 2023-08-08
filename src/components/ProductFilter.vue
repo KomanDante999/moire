@@ -144,10 +144,13 @@
         </ul>
       </fieldset>
 
-      <button class="w-full mb-4 button button-primary bg-alarm" type="submit">
+      <button
+        class="w-full mb-4 button-style button-primary bg-alarm"
+        type="submit"
+      >
         Применить
       </button>
-      <button class="w-36 p-4 button button-second" type="button">
+      <button class="w-36 p-4 button-style button-second" type="button">
         Сбросить
       </button>
     </form>

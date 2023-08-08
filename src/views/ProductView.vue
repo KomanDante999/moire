@@ -14,7 +14,7 @@
     </ul>
   </div>
 
-  <section class="grid grid-cols-2 gap-x-7 gap-y-7 items-start">
+  <section class="grid gap-7 items-start">
     <div>
       <div class="mb-5">
         <img
@@ -56,7 +56,7 @@
       <h2 class="title-h2 mt-3 mb-5">Носки с принтом мороженое</h2>
       <div>
         <form class="" action="#" method="POST">
-          <div class="flex justify-start items-center">
+          <div class="flex justify-start items-center mb-3">
             <div class="flex items-center w-[150px] h-[70px] mr-5">
               <button
                 class="btn-round"
@@ -84,7 +84,7 @@
             <b class="price-main"> 18 990 ₽ </b>
           </div>
 
-          <div class="flex justify-start items-start">
+          <div class="flex justify-start items-start mb-9">
             <fieldset class="form__block mr-5">
               <legend class="form-legend">Цвет</legend>
               <FormSelectColors />
@@ -98,34 +98,39 @@
             </fieldset>
           </div>
 
-          <button class="item__button button button--primery" type="submit">
+          <button
+            class="min-w-[200px] button-style button-primary bg-alarm"
+            type="submit"
+          >
             В корзину
           </button>
         </form>
       </div>
     </div>
 
-    <div class="item__desc">
-      <ul class="tabs">
+    <div class="md:col-span-2">
+      <ul class="flex items-center border-b border-secondary/60">
         <li class="tabs__item">
-          <a class="tabs__link tabs__link--current"> Информация о товаре </a>
+          <button class="tabs__btn tabs__btn--current">
+            Информация о товаре
+          </button>
         </li>
         <li class="tabs__item">
-          <a class="tabs__link" href="#"> Доставка и возврат </a>
+          <button class="tabs__btn">Доставка и возврат</button>
         </li>
       </ul>
 
-      <div class="item__content">
-        <h3>Состав:</h3>
+      <div class="pt-12">
+        <h3 class="mb-[6px] title-h3">Состав:</h3>
 
-        <p>
+        <p class="mb-5 font-light leading-7">
           60% хлопок<br />
           30% полиэстер<br />
         </p>
 
-        <h3>Уход:</h3>
+        <h3 class="mb-[6px] title-h3">Уход:</h3>
 
-        <p>
+        <p class="mb-5 font-light leading-7">
           Машинная стирка при макс. 30ºC короткий отжим<br />
           Гладить при макс. 110ºC<br />
           Не использовать машинную сушку<br />

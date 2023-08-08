@@ -55,10 +55,11 @@
           </nav>
         </div>
 
-        <router-link :to="{ name: 'home' }">
-          <h4 class="hidden sm:block order-1 mr-auto uppercase text-xs">
-            Каталог
-          </h4>
+        <router-link
+          class="hidden sm:block order-1 mr-auto"
+          :to="{ name: 'home' }"
+        >
+          <h4 class="uppercase text-xs">Каталог</h4>
         </router-link>
 
         <a

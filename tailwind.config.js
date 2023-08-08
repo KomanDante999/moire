@@ -14,6 +14,7 @@ module.exports = {
         primary: "#222222",
         secondary: "#9d9d9d",
         superlite: "#d1d1d1",
+        e7e7e7: "#e7e7e7",
         bordLite: "#e2e2e2;",
         alarm: "#e02d71"
       },
