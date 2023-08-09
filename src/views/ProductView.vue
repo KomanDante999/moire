@@ -46,6 +46,7 @@
       <h2 class="title-h2 mt-3 mb-5">Носки с принтом мороженое</h2>
       <div>
         <form class="" action="#" method="POST">
+          <!-- counter -->
           <div class="flex justify-start items-center mb-3">
             <div class="flex items-center w-[150px] h-[70px] mr-5">
               <button

@@ -15,6 +15,7 @@ module.exports = {
         secondary: "#9d9d9d",
         superlite: "#d1d1d1",
         e7e7e7: "#e7e7e7",
+        b9b9b9: "#b9b9b9",
         bordLite: "#e2e2e2;",
         alarm: "#e02d71"
       },
@@ -26,6 +27,8 @@ module.exports = {
         "layout-header-mobil": "25px 1fr 25px",
         "layout-main": "290px 1fr",
         "layout-footer": "1.8fr 1fr",
+        "layout-cart": "1fr 370px",
+        "cart-item": "120px 1fr 140px 100px 20px",
         "2auto": "auto auto"
       },
       gridTemplateRows: {

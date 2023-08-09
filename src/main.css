@@ -202,6 +202,12 @@
   .tabs__btn--current {
     @apply text-primary pointer-events-none after:bg-alarm after:-translate-y-5;
   }
+  .cart-item:not(:last-child) {
+    @apply mb-14;
+  }
+  .product {
+    @apply grid grid-cols-cart-item gap-x-5;
+  }
 }
 .pagination__link--disabled {
   @apply opacity-60 cursor-not-allowed;
