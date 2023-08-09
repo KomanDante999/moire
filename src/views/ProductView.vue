@@ -1,17 +1,7 @@
 <template>
   <div class="mb-9">
     <!-- breadcrumbs -->
-    <ul class="flex items-center flex-wrap">
-      <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link" href="index.html"> Каталог </a>
-      </li>
-      <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link" href="#"> Носки </a>
-      </li>
-      <li class="breadcrumbs__item">
-        <a class="breadcrumbs__link"> Носки с принтом мороженое </a>
-      </li>
-    </ul>
+    <BaseBreadcrumbs />
   </div>
 
   <section class="grid gap-7 items-start">
@@ -143,11 +133,12 @@
 </template>
 
 <script>
+import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
 import FormSelect from "@/components/FormSelect.vue";
 import FormSelectColors from "@/components/FormSelectColors.vue";
 
 export default {
   name: "ProductView",
-  components: { FormSelectColors, FormSelect }
+  components: { FormSelectColors, FormSelect, BaseBreadcrumbs }
 };
 </script>
