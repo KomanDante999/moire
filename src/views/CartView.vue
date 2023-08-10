@@ -9,8 +9,59 @@
   </div>
 
   <section>
-    <form class="grid grid-cols-layout-cart gap-x-12" method="POST">
+    <form
+      class="grid grid-cols-1 gap-y-14 lg:grid-cols-layout-cart lg:gap-x-10 lx:gap-x-12"
+      method="POST"
+    >
       <ul>
+        <li class="cart-item product">
+          <div class="">
+            <img
+              src="img/product-square-4.jpg"
+              width="120"
+              height="120"
+              srcset="img/product-square-4@2x.jpg 2x"
+              alt="Название товара"
+            />
+          </div>
+          <div class="flex flex-col h-full">
+            <h3 class="mb-auto">Базовая хлопковая футболка</h3>
+            <div class="flex items-center mb-4">
+              <p class="mr-2 text-sm leading-none text-neutral-500">Цвет:</p>
+              <i
+                class="mr-2 block w-5 h-5 rounded-full"
+                style="background-color: #ff9b78"
+              ></i>
+              <span class="text-sm leading-none text-primary">
+                Персиковый
+              </span>
+            </div>
+            <span class="text-xs text-b9b9b9"> Артикул: 1501230 </span>
+          </div>
+
+          <FormCounterProduct class="title-base" />
+
+          <button
+            class="button-del"
+            type="button"
+            aria-label="Удалить товар из корзины"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-auto h-auto"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </li>
         <li class="cart-item product">
           <div class="">
             <img
@@ -36,143 +87,93 @@
             <span class="text-xs text-b9b9b9"> Артикул: 1501230 </span>
           </div>
 
-          <div class="product__counter form__counter">
-            <button type="button" aria-label="Убрать один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-minus"></use>
-              </svg>
-            </button>
-
-            <input type="text" value="1" name="count" />
-
-            <button type="button" aria-label="Добавить один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-plus"></use>
-              </svg>
-            </button>
-          </div>
-
-          <b class="product__price"> 990 ₽ </b>
+          <FormCounterProduct class="title-base" />
 
           <button
-            class="product__del button-del"
+            class="button-del"
             type="button"
             aria-label="Удалить товар из корзины"
           >
-            <svg width="20" height="20" fill="currentColor">
-              <use xlink:href="#icon-close"></use>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-auto h-auto"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </li>
-
         <li class="cart-item product">
-          <div class="product__pic">
+          <div class="">
             <img
-              src="img/product-square-5.jpg"
+              src="img/product-square-4.jpg"
               width="120"
               height="120"
-              srcset="img/product-square-5@2x.jpg 2x"
+              srcset="img/product-square-4@2x.jpg 2x"
               alt="Название товара"
             />
           </div>
-          <h3 class="product__title">Гироскутер Razor Hovertrax 2.0</h3>
-          <p class="product__info product__info--color">
-            Цвет:
-            <span>
-              <i style="background-color: #73b6ea"></i>
-              Нежно-голубой
-            </span>
-          </p>
-          <span class="product__code"> Артикул: 1501230 </span>
-
-          <div class="product__counter form__counter">
-            <button type="button" aria-label="Убрать один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-minus"></use>
-              </svg>
-            </button>
-
-            <input type="text" value="1" name="count" />
-
-            <button type="button" aria-label="Добавить один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-plus"></use>
-              </svg>
-            </button>
+          <div class="flex flex-col">
+            <h3 class="mb-auto">Базовая хлопковая футболка</h3>
+            <div class="flex items-center mb-4">
+              <p class="mr-2 text-sm leading-none text-neutral-500">Цвет:</p>
+              <i
+                class="mr-2 block w-5 h-5 rounded-full"
+                style="background-color: #ff9b78"
+              ></i>
+              <span class="text-sm leading-none text-primary">
+                Персиковый
+              </span>
+            </div>
+            <span class="text-xs text-b9b9b9"> Артикул: 1501230 </span>
           </div>
 
-          <b class="product__price"> 1 990 ₽ </b>
+          <FormCounterProduct class="title-base" />
 
           <button
-            class="product__del button-del"
+            class="button-del"
             type="button"
             aria-label="Удалить товар из корзины"
           >
-            <svg width="20" height="20" fill="currentColor">
-              <use xlink:href="#icon-close"></use>
-            </svg>
-          </button>
-        </li>
-
-        <li class="cart-item product">
-          <div class="product__pic">
-            <img
-              src="img/product-square-6.jpg"
-              width="120"
-              height="120"
-              srcset="img/product-square-6@2x.jpg 2x"
-              alt="Название товара"
-            />
-          </div>
-          <h3 class="product__title">
-            Электрический дрифт-карт Razor Lil’ Crazy
-          </h3>
-          <p class="product__info product__info--color">
-            Цвет:
-            <span>
-              <i style="background-color: #ff6b00"></i>
-              Оранжевый
-            </span>
-          </p>
-          <span class="product__code"> Артикул: 1501230 </span>
-
-          <div class="product__counter form__counter">
-            <button type="button" aria-label="Убрать один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-minus"></use>
-              </svg>
-            </button>
-
-            <input type="text" value="1" name="count" />
-
-            <button type="button" aria-label="Добавить один товар">
-              <svg width="10" height="10" fill="currentColor">
-                <use xlink:href="#icon-plus"></use>
-              </svg>
-            </button>
-          </div>
-
-          <b class="product__price"> 1 090 ₽ </b>
-
-          <button
-            class="product__del button-del"
-            type="button"
-            aria-label="Удалить товар из корзины"
-          >
-            <svg width="20" height="20" fill="currentColor">
-              <use xlink:href="#icon-close"></use>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-auto h-auto"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </li>
       </ul>
 
-      <div class="cart__block">
-        <p class="cart__desc">
+      <div
+        class="w-full py-7 px-5 mob:w-[370px] lg:w-[340px] xl:w-[370px] h-[fit-content] lg:py-7 lg:px-5 xl:py-9 xl:px-8 border border-dedede"
+      >
+        <p class="mb-4">
           Мы&nbsp;посчитаем стоимость доставки на&nbsp;следующем этапе
         </p>
-        <p class="cart__price">Итого: <span>4 070 ₽</span></p>
+        <p class="mb-9 text-3xl leading-[48px]">
+          Итого: <span class="font-medium text-[34px]">4 070 ₽</span>
+        </p>
 
-        <button class="cart__button button button--primery" type="submit">
+        <button
+          class="w-full bg-alarm button-style button-primary"
+          type="submit"
+        >
           Оформить заказ
         </button>
       </div>
@@ -182,9 +183,10 @@
 
 <script>
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
+import FormCounterProduct from "@/components/FormCounterProduct.vue";
 
 export default {
   name: "CartView",
-  components: { BaseBreadcrumbs }
+  components: { BaseBreadcrumbs, FormCounterProduct }
 };
 </script>

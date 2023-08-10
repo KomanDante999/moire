@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-start items-center mb-3">
+  <div class="flex justify-center items-center flex-wrap">
     <div class="flex items-center w-[150px] h-[70px] mr-5">
       <button class="btn-round" type="button" aria-label="Убрать один товар">
         <svg width="12" height="12" fill="currentColor">
@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <b class="price-main"> 18 990 ₽ </b>
+    <b class="price-counter"> 18 990 ₽ </b>
   </div>
 </template>
 

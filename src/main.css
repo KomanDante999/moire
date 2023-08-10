@@ -57,8 +57,11 @@
   .product-count {
     @apply ml-4 font-light leading-none text-secondary;
   }
-  .price-main {
+  .price-counter {
     @apply font-medium text-3xl mob:text-[40px] leading-[1];
+  }
+  .title-base .price-counter {
+    @apply font-bold text-base leading-snug;
   }
   .footer-link {
     @apply text-sm leading-6 border-b-2 border-transparent hover:border-alarm hover:text-alarm/70 focus:outline-none focus:border-alarm active:text-alarm transition-colors duration-300;
@@ -130,6 +133,10 @@
     @apply flex items-center justify-center shrink-0 w-[37px] h-[37px] border border-bordLite rounded-full 
     transition-colors duration-300 focus:outline-none 
     focus:border-primary hover:bg-primary hover:text-white active:border-alarm active:text-alarm;
+  }
+  .button-del {
+    @apply flex items-center justify-center w-8 h-8 rounded-full border-2 border-transparent text-secondary transition-colors duration-300
+    focus:outline-none focus:border-secondary hover:text-primary hover:bg-superlite/50 active:text-alarm;
   }
   .catalog__pic {
     @apply block max-w-[270px] max-h-[350px] mb-5;
@@ -206,7 +213,7 @@
     @apply mb-14;
   }
   .product {
-    @apply grid grid-cols-cart-item gap-x-5;
+    @apply grid grid-cols-cart-item gap-x-5 items-center;
   }
 }
 .pagination__link--disabled {

@@ -47,33 +47,7 @@
       <div>
         <form class="" action="#" method="POST">
           <!-- counter -->
-          <div class="flex justify-start items-center mb-3">
-            <div class="flex items-center w-[150px] h-[70px] mr-5">
-              <button
-                class="btn-round"
-                type="button"
-                aria-label="Убрать один товар"
-              >
-                <svg width="12" height="12" fill="currentColor">
-                  <use xlink:href="#icon-minus"></use>
-                </svg>
-              </button>
-
-              <input class="couter-input" value="1" name="count" />
-
-              <button
-                class="btn-round"
-                type="button"
-                aria-label="Добавить один товар"
-              >
-                <svg width="12" height="12" fill="currentColor">
-                  <use xlink:href="#icon-plus"></use>
-                </svg>
-              </button>
-            </div>
-
-            <b class="price-main"> 18 990 ₽ </b>
-          </div>
+          <FormCounterProduct class="mb-3" />
 
           <div class="flex justify-start items-start mb-9">
             <fieldset class="form__block mr-5">
@@ -135,11 +109,17 @@
 
 <script>
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
+import FormCounterProduct from "@/components/FormCounterProduct.vue";
 import FormSelect from "@/components/FormSelect.vue";
 import FormSelectColors from "@/components/FormSelectColors.vue";
 
 export default {
   name: "ProductView",
-  components: { FormSelectColors, FormSelect, BaseBreadcrumbs }
+  components: {
+    FormSelectColors,
+    FormSelect,
+    BaseBreadcrumbs,
+    FormCounterProduct
+  }
 };
 </script>
