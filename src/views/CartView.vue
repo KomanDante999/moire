@@ -24,7 +24,7 @@
               alt="Название товара"
             />
           </div>
-          <div class="flex flex-col h-full">
+          <div class="flex flex-col h-full col-start-2 col-span-4 sm:col-auto">
             <h3 class="mb-auto">Базовая хлопковая футболка</h3>
             <div class="flex items-center mb-4">
               <p class="mr-2 text-sm leading-none text-neutral-500">Цвет:</p>
@@ -39,7 +39,9 @@
             <span class="text-xs text-b9b9b9"> Артикул: 1501230 </span>
           </div>
 
-          <FormCounterProduct class="title-base" />
+          <FormCounterProduct
+            class="col-start-1 col-span-4 sm:col-auto title-base"
+          />
 
           <button
             class="button-del"

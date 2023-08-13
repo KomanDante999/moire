@@ -12,9 +12,23 @@
 <script>
 import ProductFilter from "@/components/ProductFilter.vue";
 import ProductList from "@/components/ProductList.vue";
+import { loadProducts } from "@/api.js";
 
 export default {
   name: "MainView",
-  components: { ProductFilter, ProductList }
+  components: { ProductFilter, ProductList },
+  data() {
+    return {
+      products: null
+    };
+  },
+  methods: {
+    updatedProducts(productsData) {
+      this.products = productsData;
+    }
+  },
+  created() {
+    loadProducts(this.updatedProducts);
+  }
 };
 </script>

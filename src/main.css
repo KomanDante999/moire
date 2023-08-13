@@ -54,6 +54,9 @@
   .title-h3 {
     @apply font-medium;
   }
+  .title-order-h3 {
+    @apply font-circe font-bold text-sm leading-6 uppercase;
+  }
   .product-count {
     @apply ml-4 font-light leading-none text-secondary;
   }
@@ -85,9 +88,18 @@
     @apply absolute top-2 left-5 text-xs font-light leading-none text-neutral-500;
   }
   /* form */
+  .input-label {
+    @apply relative block;
+  }
   .form-input-style {
-    @apply w-full h-16 pt-7 pr-11 pb-3 pl-5 border-transparent rounded-sm bg-neutral-50 text-primary leading-none 
-    focus:border-primary focus:ring-red-600 hover:bg-neutral-200 transition-colors duration-300 focus:outline-none;
+    @apply w-full pt-7 pr-11 pb-3 pl-5 border-transparent rounded-sm bg-neutral-50 text-primary leading-none 
+    focus:border-primary focus:ring-transparent hover:bg-neutral-200/50 transition-colors duration-300 focus:outline-none;
+  }
+  .form-texarea-style {
+    @apply resize-none leading-5;
+  }
+  .input-error {
+    @apply absolute -bottom-5 left-5 text-[11px] leading-[14px] text-alarm;
   }
   .check-list__item:not(:last-child) {
     @apply mb-3;
@@ -113,6 +125,18 @@
   .check-list__check:checked ~ .check-list__desc::after {
     @apply opacity-100;
   }
+  .order-label:not(:last-child) {
+    @apply mb-6;
+  }
+  .order-options-label {
+    @apply block cursor-pointer;
+  }
+  .order-options-radio {
+  }
+  .order-options-caption {
+    @apply block relative bg-white border border-dedede  rounded py-9 pr-7 pl-[67px] text-sm leading-none;
+  }
+
   /* button */
   .button-style {
     @apply py-6 px-4 font-circe font-bold uppercase transition-colors duration-300 focus:outline-none;
@@ -213,7 +237,7 @@
     @apply mb-14;
   }
   .product {
-    @apply grid grid-cols-cart-item gap-x-5 items-center;
+    @apply grid grid-cols-5 sm:grid-cols-cart-item gap-y-3 gap-x-2 mob:gap-x-5 md:gap-x-10 lg:gap-x-5 items-center;
   }
 }
 .pagination__link--disabled {

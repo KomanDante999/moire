@@ -1,179 +1,134 @@
 <template>
-  <main class="content container">
-    <div class="content__top">
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="index.html"> Каталог </a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link" href="cart.html"> Корзина </a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link"> Оформление заказа </a>
-        </li>
-      </ul>
+  <div class="mb-9">
+    <BaseBreadcrumbs />
 
-      <div class="content__row">
-        <h1 class="content__title">Оформление заказа</h1>
-      </div>
-    </div>
+    <h1 class="title-main">Оформление заказа</h1>
+  </div>
 
-    <section class="cart">
-      <form class="cart__form form" action="#" method="POST">
-        <div class="cart__field">
-          <div class="cart__data">
-            <label class="form__label">
-              <input
-                class="form__input"
-                type="text"
-                name="name"
-                placeholder="Введите ваше полное имя"
-              />
-              <span class="form__value">ФИО</span>
-            </label>
-
-            <label class="form__label">
-              <input
-                class="form__input"
-                type="text"
-                name="address"
-                placeholder="Введите ваш адрес"
-              />
-              <span class="form__value">Адрес доставки</span>
-            </label>
-
-            <label class="form__label">
-              <input
-                class="form__input"
-                type="tel"
-                name="phone"
-                placeholder="Введите ваш телефон"
-              />
-              <span class="form__value">Телефон</span>
-              <span class="form__error">Неверный формат телефона</span>
-            </label>
-
-            <label class="form__label">
-              <input
-                class="form__input"
-                type="email"
-                name="email"
-                placeholder="Введи ваш Email"
-              />
-              <span class="form__value">Email</span>
-            </label>
-
-            <label class="form__label">
-              <textarea
-                class="form__input form__input--area"
-                name="comments"
-                placeholder="Ваши пожелания"
-              ></textarea>
-              <span class="form__value">Комментарий к заказу</span>
-            </label>
-          </div>
-
-          <div class="cart__options">
-            <h3 class="cart__title">Доставка</h3>
-            <ul class="cart__options options">
-              <li class="options__item">
-                <label class="options__label">
-                  <input
-                    class="options__radio sr-only"
-                    type="radio"
-                    name="delivery"
-                    value="0"
-                    checked="false"
-                  />
-                  <span class="options__value">
-                    Самовывоз <b>бесплатно</b>
-                  </span>
-                </label>
-              </li>
-              <li class="options__item">
-                <label class="options__label">
-                  <input
-                    class="options__radio sr-only"
-                    type="radio"
-                    name="delivery"
-                    value="500"
-                  />
-                  <span class="options__value"> Курьером <b>290 ₽</b> </span>
-                </label>
-              </li>
-            </ul>
-
-            <h3 class="cart__title">Оплата</h3>
-            <ul class="cart__options options">
-              <li class="options__item">
-                <label class="options__label">
-                  <input
-                    class="options__radio sr-only"
-                    type="radio"
-                    name="pay"
-                    value="card"
-                    checked="false"
-                  />
-                  <span class="options__value"> Картой при получении </span>
-                </label>
-              </li>
-              <li class="options__item">
-                <label class="options__label">
-                  <input
-                    class="options__radio sr-only"
-                    type="radio"
-                    name="pay"
-                    value="cash"
-                  />
-                  <span class="options__value"> Наличными при получении </span>
-                </label>
-              </li>
-            </ul>
-          </div>
+  <section>
+    <form
+      class="grid grid-rows-layout-order grid-cols-layout-order gap-y-5 gap-x-12"
+    >
+      <div class="row-span-2">
+        <div class="grid grid-cols-2 gap-y-1 gap-x-7 mb-9">
+          <FormInput class="order-label col-span-2" />
+          <FormInput class="order-label col-span-2" />
+          <FormInput class="order-label" />
+          <FormInput class="order-label" />
+          <FormTextarea class="order-label col-span-2" />
         </div>
 
-        <div class="cart__block">
-          <ul class="cart__orders">
-            <li class="cart__order">
-              <h3>Смартфон Xiaomi Redmi Note 7 Pro 6/128GB</h3>
-              <b>990 ₽</b>
-              <span>Артикул: 150030</span>
+        <div>
+          <h3 class="title-order-h3 mb-5">Доставка</h3>
+          <ul class="grid grid-cols-2 gap-x-7 mb-10">
+            <li>
+              <label class="order-options-label">
+                <input
+                  class="order-options-radio sr-only"
+                  type="radio"
+                  name="delivery"
+                  value="0"
+                  checked="false"
+                />
+                <span class="order-options-caption">
+                  Самовывоз <b>бесплатно</b>
+                </span>
+              </label>
             </li>
-            <li class="cart__order">
-              <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
-              <b>1 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-            <li class="cart__order">
-              <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
-              <b>4 090 ₽</b>
-              <span>Артикул: 150030</span>
+            <li>
+              <label class="order-options-label">
+                <input
+                  class="order-options-radio sr-only"
+                  type="radio"
+                  name="delivery"
+                  value="500"
+                />
+                <span class="order-options-caption">
+                  Курьером <b>290 ₽</b>
+                </span>
+              </label>
             </li>
           </ul>
 
-          <div class="cart__total">
-            <p>Доставка: <b>бесплатно</b></p>
-            <p>Итого: <b>3</b> товара на сумму <b>4 070 ₽</b></p>
-          </div>
+          <h3 class="title-order-h3 mb-5">Оплата</h3>
+          <ul class="grid grid-cols-2 gap-x-7">
+            <li>
+              <label class="order-options-label">
+                <input
+                  class="order-options-radio sr-only"
+                  type="radio"
+                  name="pay"
+                  value="card"
+                  checked="false"
+                />
+                <span class="order-options-caption">
+                  Картой при получении
+                </span>
+              </label>
+            </li>
+            <li>
+              <label class="order-options-label">
+                <input
+                  class="order-options-radio sr-only"
+                  type="radio"
+                  name="pay"
+                  value="cash"
+                />
+                <span class="order-options-caption">
+                  Наличными при получении
+                </span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-          <button class="cart__button button button--primery" type="submit">
-            Оформить заказ
-          </button>
+      <div class="cart__block">
+        <ul class="cart__orders">
+          <li class="cart__order">
+            <h3>Смартфон Xiaomi Redmi Note 7 Pro 6/128GB</h3>
+            <b>990 ₽</b>
+            <span>Артикул: 150030</span>
+          </li>
+          <li class="cart__order">
+            <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
+            <b>1 990 ₽</b>
+            <span>Артикул: 150030</span>
+          </li>
+          <li class="cart__order">
+            <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
+            <b>4 090 ₽</b>
+            <span>Артикул: 150030</span>
+          </li>
+        </ul>
+
+        <div class="cart__total">
+          <p>Доставка: <b>бесплатно</b></p>
+          <p>Итого: <b>3</b> товара на сумму <b>4 070 ₽</b></p>
         </div>
-        <div class="cart__error form__error-block">
-          <h4>Заявка не отправлена!</h4>
-          <p>
-            Похоже произошла ошибка. Попробуйте отправить снова или
-            перезагрузите страницу.
-          </p>
-        </div>
-      </form>
-    </section>
-  </main>
+
+        <button class="cart__button button button--primery" type="submit">
+          Оформить заказ
+        </button>
+      </div>
+      <div class="cart__error form__error-block">
+        <h4>Заявка не отправлена!</h4>
+        <p>
+          Похоже произошла ошибка. Попробуйте отправить снова или перезагрузите
+          страницу.
+        </p>
+      </div>
+    </form>
+  </section>
 </template>
 
 <script>
+import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
+import FormInput from "@/components/FormInput.vue";
+import FormTextarea from "@/components/FormTextarea.vue";
+
 export default {
-  name: "OrderView"
+  name: "OrderView",
+  components: { BaseBreadcrumbs, FormInput, FormTextarea }
 };
 </script>

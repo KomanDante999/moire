@@ -29,11 +29,13 @@ module.exports = {
         "layout-main": "290px 1fr",
         "layout-footer": "1.8fr 1fr",
         "layout-cart": "1fr auto",
+        "layout-order": "1fr 370px",
         "cart-item": "120px 1fr auto auto",
         "2auto": "auto auto"
       },
       gridTemplateRows: {
-        "layout-body": "auto 1fr auto"
+        "layout-body": "auto 1fr auto",
+        "layout-order": "auto 1fr"
       }
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <select class="form-input-style" type="text">
+  <select class="form-input-style">
     <option value="value1">Все категории</option>
     <option value="value2">Футболки</option>
     <option value="value3">Бюстгалтеры</option>
