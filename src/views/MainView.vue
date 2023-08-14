@@ -12,23 +12,30 @@
 <script>
 import ProductFilter from "@/components/ProductFilter.vue";
 import ProductList from "@/components/ProductList.vue";
-import { loadProducts } from "@/api.js";
+import { mapActions } from "vuex";
 
 export default {
   name: "MainView",
   components: { ProductFilter, ProductList },
   data() {
     return {
-      products: null
+      productsLoading: false,
+      productsLoadingFailed: false
     };
   },
   methods: {
-    updatedProducts(productsData) {
-      this.products = productsData;
+    ...mapActions(["loadProducts"]),
+    loadingProducts() {
+      this.productsLoading = true;
+      this.productsLoadingFailed = false;
+      this.loadProducts()
+        .then(() => (this.productsLoading = false))
+        .catch(() => (this.productsLoadingFailed = true))
+        .then(() => (this.productsLoading = false));
     }
   },
   created() {
-    loadProducts(this.updatedProducts);
+    this.loadingProducts();
   }
 };
 </script>

@@ -10,12 +10,19 @@ export default createStore({
     productsLoadung: false
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    updateProducts(state, data) {
+      state.products = data;
+    }
+  },
   actions: {
     loadProducts(context) {
       context.state.productsLoadung = true;
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
-        return axios.get(API_BASE_URL + "products");
+        return axios.get(API_BASE_URL + "products").then((response) => {
+          context.commit("updateProducts", response.data);
+          context.state.productsLoadung = false;
+        });
       });
     }
   },
