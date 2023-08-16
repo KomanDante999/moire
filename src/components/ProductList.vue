@@ -3,28 +3,11 @@
     <ul
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[30px] gap-y-10 lg:gap-y-16 mb-16"
     >
-      <li
+      <ProductItem
         v-for="item in products"
         :key="item.id"
-        class="flex flex-col items-start"
-      >
-        <router-link
-          :to="{ name: 'product', params: { id: item.id } }"
-          class="block w-full"
-          href="#"
-        >
-          <img
-            :src="item.colors[0].gallery[0].file.url"
-            :alt="item.title"
-            class="block h-[350px] mb-5 bg-superlite"
-          />
-          <h3 class="max-w-[270px] mb-2">
-            {{ item.title }}
-          </h3>
-        </router-link>
-        <span class="catalog__price"> {{ item.price }} ₽ </span>
-        <FormSelectColors :colorsData="item.colors" />
-      </li>
+        :productData="item"
+      />
     </ul>
     <!-- pagination -->
     <ul class="flex items-center justify-center flex-wrap mb-auto">
@@ -76,12 +59,12 @@
 </template>
 
 <script>
-import FormSelectColors from "@/components/FormSelectColors.vue";
 import { mapActions, mapState } from "vuex";
+import ProductItem from "@/components/ProductItem.vue";
 
 export default {
   name: "ProductList",
-  components: { FormSelectColors },
+  components: { ProductItem },
   data() {
     return {
       isProductsLoading: false,

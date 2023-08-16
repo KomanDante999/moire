@@ -180,16 +180,16 @@
   .select-colors__value {
     @apply block w-5 h-5 rounded-full
     before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:rounded-full before:border before:border-transparent
-    before:w-[26px] before:h-[26px] before:transition-colors before:duration-300 before:-translate-x-1/2 before:-translate-y-1/2;
+    before:w-[26px] before:h-[26px] transition-opacity duration-300 before:transition-colors before:duration-300 before:-translate-x-1/2 before:-translate-y-1/2;
   }
-  .select-colors__input:checked ~ .select-colors__value {
+  .select-colors__label:focus .select-colors__value {
     @apply before:border-primary;
-  }
-  .select-colors__label:focus .select-colors__value::before {
-    @apply border-primary;
   }
   .select-colors__label:hover .select-colors__value {
-    @apply before:border-primary;
+    @apply opacity-100;
+  }
+  .select-colors__input:checked ~ .select-colors__value {
+    @apply before:border-primary opacity-100;
   }
   .pagination__link {
     @apply flex items-center justify-center  py-[13px] px-[3px] w-10 h-10 leading-none text-superlite font-bold 
