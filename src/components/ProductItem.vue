@@ -5,7 +5,7 @@
       class="block w-full"
     >
       <img
-        :src="productData.colors[0].gallery[0].file.url"
+        :src="productData.colors[currentColorNumber].gallery[0].file.url"
         :alt="productData.title"
         class="block h-[350px] mb-5 bg-superlite"
       />
@@ -14,7 +14,10 @@
       </h3>
     </router-link>
     <span class="catalog__price"> {{ productData.price }} ₽ </span>
-    <FormSelectColors :colorsData="productData.colors" />
+    <FormSelectColors
+      :colorsData="productData.colors"
+      v-model:currentColorNumber="currentColorNumber"
+    />
   </li>
 </template>
 
@@ -24,6 +27,11 @@ import FormSelectColors from "@/components/FormSelectColors.vue";
 export default {
   name: "ProductItem",
   props: ["productData"],
-  components: { FormSelectColors }
+  components: { FormSelectColors },
+  data() {
+    return {
+      currentColorNumber: 0
+    };
+  }
 };
 </script>
