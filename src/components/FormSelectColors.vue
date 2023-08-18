@@ -27,16 +27,23 @@
 <script>
 export default {
   name: "SelectColors",
-  props: ["colorsData", "currentColorNumber"],
+  props: ["colorsData"],
+  model: {
+    prop: "selectedColorNumber",
+    event: "change"
+  },
   data() {
     return {
-      selectedColorNumber: this.currentColorNumber
+      selectedColorNumber: 0
     };
   },
   watch: {
-    selectedColorNumber() {
-      this.$emit("update:currentColorNumber", this.selectedColorNumber);
+    selectedColorNumber(newVal) {
+      this.$emit("change", newVal);
     }
   }
+  // mounted() {
+  //   this.selectedColorNumber = 0;
+  // }
 };
 </script>

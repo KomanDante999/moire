@@ -16,7 +16,7 @@
     <span class="catalog__price"> {{ productData.price }} ₽ </span>
     <FormSelectColors
       :colorsData="productData.colors"
-      v-model:currentColorNumber="currentColorNumber"
+      v-model="currentColorNumber"
     />
   </li>
 </template>
