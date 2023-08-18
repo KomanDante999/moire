@@ -11,7 +11,7 @@
             class="select-colors__input sr-only"
             type="radio"
             :value="index"
-            v-model="selectedColorNumber"
+            v-model="selectedColor"
           />
           <span
             class="select-colors__value opacity-40"
@@ -27,23 +27,24 @@
 <script>
 export default {
   name: "SelectColors",
-  props: ["colorsData"],
-  model: {
-    prop: "selectedColorNumber",
-    event: "change"
+  props: {
+    colorsData: Array,
+    currentColorNumber: {
+      type: Number,
+      require: true,
+      default: 0
+    }
   },
-  data() {
-    return {
-      selectedColorNumber: 0
-    };
-  },
-  watch: {
-    selectedColorNumber(newVal) {
-      this.$emit("change", newVal);
+  emits: ["update:currentColorNumber"],
+  computed: {
+    selectedColor: {
+      get() {
+        return this.currentColorNumber;
+      },
+      set(newValue) {
+        this.$emit("update:currentColorNumber", newValue);
+      }
     }
   }
-  // mounted() {
-  //   this.selectedColorNumber = 0;
-  // }
 };
 </script>
