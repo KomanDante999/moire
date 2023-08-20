@@ -16,6 +16,9 @@ export default createStore({
     },
     updatePagination(state, data) {
       state.paginationData = data;
+    },
+    updateCurrentPage(state, data) {
+      state.currentPagePagination = data;
     }
   },
   actions: {

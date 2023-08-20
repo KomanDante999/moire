@@ -193,13 +193,13 @@
   }
   .pagination__link {
     @apply flex items-center justify-center  py-[13px] px-[3px] w-10 h-10 leading-none text-superlite font-bold 
-    rounded-full transition-colors duration-300 focus:outline-none;
+    rounded-full border border-transparent transition-colors duration-300 focus:outline-none;
   }
   .pagination__link--events {
-    @apply focus:text-primary focus:outline-none hover:text-primary hover:bg-orange-100/30 active:bg-orange-100;
+    @apply focus:text-primary focus:outline-none focus:border-primary hover:text-primary hover:bg-orange-100/30 active:bg-orange-100 active:border-transparent;
   }
   .pagination__link-arrow {
-    @apply border border-bordLite;
+    @apply border-bordLite;
   }
   .pagination__link-arrow--events {
     @apply focus:border-primary hover:border-primary;
@@ -241,7 +241,10 @@
   }
 }
 .pagination__link--disabled {
-  @apply opacity-60 cursor-not-allowed;
+  @apply opacity-60 cursor-not-allowed pointer-events-none;
+}
+.pagination__link--current {
+  @apply text-primary cursor-default pointer-events-none;
 }
 .couter-input {
   @apply w-[70px] h-[70px] py-6 px-2 text-2xl leading-none text-center border-transparent focus:border-transparent focus:ring-transparent focus:outline-none;

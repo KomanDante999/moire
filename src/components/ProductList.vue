@@ -10,61 +10,18 @@
       />
     </ul>
     <!-- pagination -->
-    <ul class="flex items-center justify-center flex-wrap mb-auto">
-      <li class="pagination__item mr-6">
-        <a
-          class="pagination__link pagination__link-arrow pagination__link--disabled"
-          aria-label="Предыдущая страница"
-        >
-          <svg class="mr-[2px]" width="8" height="14" fill="currentColor">
-            <use xlink:href="#icon-arrow-left"></use>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a
-          class="pagination__link pagination__link--events pagination__link--current"
-        >
-          1
-        </a>
-      </li>
-      <li>
-        <a class="pagination__link pagination__link--events" href="#"> 2 </a>
-      </li>
-      <li>
-        <a class="pagination__link pagination__link--events" href="#"> 3 </a>
-      </li>
-      <li>
-        <a class="pagination__link pagination__link--events" href="#"> 4 </a>
-      </li>
-      <li>
-        <a class="pagination__link pagination__link--events" href="#"> ... </a>
-      </li>
-      <li>
-        <a class="pagination__link pagination__link--events" href="#"> 10 </a>
-      </li>
-      <li class="pagination__item ml-6">
-        <a
-          class="pagination__link pagination__link--events pagination__link-arrow pagination__link-arrow--events"
-          href="#"
-          aria-label="Следующая страница"
-        >
-          <svg class="ml-[2px]" width="8" height="14" fill="currentColor">
-            <use xlink:href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
+    <BasePaginator />
   </section>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import ProductItem from "@/components/ProductItem.vue";
+import BasePaginator from "@/components/BasePaginator.vue";
 
 export default {
   name: "ProductList",
-  components: { ProductItem },
+  components: { ProductItem, BasePaginator },
   data() {
     return {
       isProductsLoading: false,
