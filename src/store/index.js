@@ -7,9 +7,18 @@ export default createStore({
   state: {
     products: null,
     currentPagePagination: 1,
-    paginationData: null
+    paginationData: null,
+    minPrice: null,
+    maxPrice: null
   },
-  getters: {},
+  getters: {
+    minPrice(state) {
+      return state.minPrice;
+    },
+    maxPrice(state) {
+      return state.maxPrice;
+    }
+  },
   mutations: {
     updateProducts(state, data) {
       state.products = data;
@@ -17,8 +26,14 @@ export default createStore({
     updatePagination(state, data) {
       state.paginationData = data;
     },
-    updateCurrentPage(state, data) {
-      state.currentPagePagination = data;
+    updateCurrentPage(state, value) {
+      state.currentPagePagination = value;
+    },
+    updateMinPrice(state, value) {
+      state.minPrice = value;
+    },
+    updateMaxPrice(state, value) {
+      state.maxPrice = value;
     }
   },
   actions: {
@@ -28,7 +43,9 @@ export default createStore({
           .get(API_BASE_URL + `products`, {
             params: {
               page: context.state.currentPagePagination,
-              limit: LIMIT_FOR_PAGINATED
+              limit: LIMIT_FOR_PAGINATED,
+              minPrice: context.state.minPrice,
+              maxPrice: context.state.maxPrice
             }
           })
           .then((response) => {

@@ -1,14 +1,14 @@
 <template>
   <aside>
-    <form class="px-6 pb-7" action="#" method="get">
+    <form @submit.prevent="submitFilter" class="px-6 pb-7">
       <fieldset class="mb-8">
         <legend class="form-legend">Цена</legend>
         <label class="filter-label label-price">
-          <input class="form-input-style" name="min-price" value="0" />
+          <input v-model.number="minPriceValue" class="form-input-style" />
           <span class="filter-cuption">От</span>
         </label>
         <label class="filter-label label-price">
-          <input class="form-input-style" name="max-price" value="12345" />
+          <input v-model.number="maxPriceValue" class="form-input-style" />
           <span class="filter-cuption">До</span>
         </label>
       </fieldset>
@@ -150,7 +150,11 @@
       >
         Применить
       </button>
-      <button class="w-36 p-4 button-style button-second" type="button">
+      <button
+        @click.prevent="resetFilter"
+        class="w-36 p-4 button-style button-second"
+        type="button"
+      >
         Сбросить
       </button>
     </form>
@@ -158,7 +162,45 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import FormSelect from "./FormSelect.vue";
 
-export default { components: { FormSelect } };
+export default {
+  name: "ProductFilter",
+  components: { FormSelect },
+  computed: {
+    ...mapGetters(["minPrice"]),
+    ...mapGetters(["maxPrice"]),
+    minPriceValue: {
+      get() {
+        return this.minPrice;
+      },
+      set(value) {
+        this.updateMinPrice(value);
+      }
+    },
+    maxPriceValue: {
+      get() {
+        return this.maxPrice;
+      },
+      set(value) {
+        this.updateMaxPrice(value);
+      }
+    }
+  },
+
+  methods: {
+    ...mapActions(["loadProducts"]),
+    ...mapMutations(["updateMinPrice"]),
+    ...mapMutations(["updateMaxPrice"]),
+    submitFilter() {
+      this.loadProducts();
+    },
+    resetFilter() {
+      this.updateMinPrice(null);
+      this.updateMaxPrice(null);
+      this.loadProducts();
+    }
+  }
+};
 </script>
