@@ -5,7 +5,7 @@
       class="block w-full"
     >
       <img
-        :src="productData.colors[currentColorNumber].gallery[0].file.url"
+        :src="getGalleryImageUrl()"
         :alt="productData.title"
         class="block h-[350px] mb-5 bg-superlite"
       />
@@ -26,12 +26,34 @@ import FormSelectColors from "@/components/FormSelectColors.vue";
 
 export default {
   name: "ProductItem",
-  props: ["productData"],
+  props: {
+    productData: {
+      type: Object,
+      required: true
+    }
+  },
   components: { FormSelectColors },
   data() {
     return {
       currentColorNumber: 0
     };
+  },
+  methods: {
+    getGalleryImageUrl() {
+      if (
+        this.productData.colors &&
+        this.productData.colors[this.currentColorNumber] &&
+        this.productData.colors[this.currentColorNumber].gallery &&
+        this.productData.colors[this.currentColorNumber].gallery[0] &&
+        this.productData.colors[this.currentColorNumber].gallery[0].file &&
+        this.productData.colors[this.currentColorNumber].gallery[0].file.url
+      ) {
+        return this.productData.colors[this.currentColorNumber].gallery[0].file
+          .url;
+      } else {
+        return "";
+      }
+    }
   }
 };
 </script>

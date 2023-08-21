@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "BasePaginator",
@@ -79,8 +79,10 @@ export default {
   },
   methods: {
     ...mapMutations(["updateCurrentPage"]),
+    ...mapActions(["loadProducts"]),
     doUpdateCurrentPage(page) {
       this.updateCurrentPage(page);
+      this.loadProducts();
     }
   }
 };
