@@ -6,17 +6,27 @@
         <label class="filter-label label-price">
           <input v-model.number="minPriceValue" class="form-input-style" />
           <span class="filter-cuption">От</span>
+          <span v-if="!isPriceValid" class="input-error"
+            >Минимальная цена больше максимальтной</span
+          >
         </label>
         <label class="filter-label label-price">
           <input v-model.number="maxPriceValue" class="form-input-style" />
           <span class="filter-cuption">До</span>
+          <span v-if="!isPriceValid" class="input-error"
+            >Максимальная цена меньше минимальной</span
+          >
         </label>
       </fieldset>
 
       <fieldset class="mb-8">
         <legend class="form-legend">Категория</legend>
-        <label class="filter-label">
-          <FormSelect class="h-[52px] py-[14px] pr-9 pl-[18px]" />
+        <label v-if="productCategories" class="filter-label">
+          <FormSelect
+            :categoriesData="productCategories"
+            v-model:selectedItem="currentProductCategoriesValue"
+            class="h-[52px] py-[14px] pr-9 pl-[18px]"
+          />
         </label>
       </fieldset>
 
@@ -162,15 +172,24 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import FormSelect from "./FormSelect.vue";
 
 export default {
   name: "ProductFilter",
   components: { FormSelect },
+  data() {
+    return {
+      isPriceValid: true,
+      isProductCategoriesLoading: false,
+      isProductCategoriesLoadingFailed: false
+    };
+  },
   computed: {
     ...mapGetters(["minPrice"]),
     ...mapGetters(["maxPrice"]),
+    ...mapState(["productCategories"]),
+    ...mapGetters(["currentProductCategories"]),
     minPriceValue: {
       get() {
         return this.minPrice;
@@ -186,6 +205,14 @@ export default {
       set(value) {
         this.updateMaxPrice(value);
       }
+    },
+    currentProductCategoriesValue: {
+      get() {
+        return this.currentProductCategories;
+      },
+      set(value) {
+        this.updateCurrentProductCategories(value);
+      }
     }
   },
 
@@ -193,14 +220,32 @@ export default {
     ...mapActions(["loadProducts"]),
     ...mapMutations(["updateMinPrice"]),
     ...mapMutations(["updateMaxPrice"]),
+    ...mapActions(["loadProductCategories"]),
+    ...mapMutations(["updateCurrentProductCategories"]),
+    doLoadProductCategories() {
+      this.isProductCategoriesLoading = true;
+      this.isProductCategoriesLoadingFailed = false;
+      this.loadProductCategories()
+        .then(() => (this.isProductCategoriesLoading = false))
+        .catch(() => (this.isProductCategoriesLoadingFailed = true))
+        .then(() => (this.isProductCategoriesLoading = false));
+    },
     submitFilter() {
-      this.loadProducts();
+      if (this.maxPrice && this.maxPrice && this.maxPrice < this.minPrice) {
+        this.isPriceValid = false;
+      } else {
+        this.loadProducts();
+      }
     },
     resetFilter() {
+      this.isPriceValid = true;
       this.updateMinPrice(null);
       this.updateMaxPrice(null);
       this.loadProducts();
     }
+  },
+  created() {
+    this.doLoadProductCategories();
   }
 };
 </script>

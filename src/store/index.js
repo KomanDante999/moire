@@ -9,7 +9,9 @@ export default createStore({
     currentPagePagination: 1,
     paginationData: null,
     minPrice: null,
-    maxPrice: null
+    maxPrice: null,
+    productCategories: null,
+    currentProductCategories: 0
   },
   getters: {
     minPrice(state) {
@@ -17,6 +19,9 @@ export default createStore({
     },
     maxPrice(state) {
       return state.maxPrice;
+    },
+    currentProductCategories(state) {
+      return state.currentProductCategories;
     }
   },
   mutations: {
@@ -34,6 +39,12 @@ export default createStore({
     },
     updateMaxPrice(state, value) {
       state.maxPrice = value;
+    },
+    updatepPoductCategories(state, data) {
+      state.productCategories = data;
+    },
+    updateCurrentProductCategories(state, value) {
+      state.currentProductCategories = value;
     }
   },
   actions: {
@@ -45,12 +56,22 @@ export default createStore({
               page: context.state.currentPagePagination,
               limit: LIMIT_FOR_PAGINATED,
               minPrice: context.state.minPrice,
-              maxPrice: context.state.maxPrice
+              maxPrice: context.state.maxPrice,
+              categoryId: context.state.currentProductCategories
             }
           })
           .then((response) => {
             context.commit("updateProducts", response.data.items);
             context.commit("updatePagination", response.data.pagination);
+          });
+      });
+    },
+    loadProductCategories(context) {
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return axios
+          .get(API_BASE_URL + `productCategories`)
+          .then((response) => {
+            context.commit("updatepPoductCategories", response.data.items);
           });
       });
     }
