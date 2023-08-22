@@ -186,10 +186,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["minPrice"]),
-    ...mapGetters(["maxPrice"]),
-    ...mapState(["productCategories"]),
-    ...mapGetters(["currentProductCategories"]),
+    ...mapState(["productCategories", "materialsData"]),
+    ...mapGetters([
+      "minPrice",
+      "maxPrice",
+      "currentProductCategories",
+      "materialsSelected"
+    ]),
     minPriceValue: {
       get() {
         return this.minPrice;
@@ -213,15 +216,29 @@ export default {
       set(value) {
         this.updateCurrentProductCategories(value);
       }
+    },
+    materialsSelectedValue: {
+      get() {
+        return this.materialsSelected;
+      },
+      set(value) {
+        this.updateMaterialsSelected(value);
+      }
     }
   },
 
   methods: {
-    ...mapActions(["loadProducts"]),
-    ...mapMutations(["updateMinPrice"]),
-    ...mapMutations(["updateMaxPrice"]),
-    ...mapActions(["loadProductCategories"]),
-    ...mapMutations(["updateCurrentProductCategories"]),
+    ...mapActions([
+      "loadProducts",
+      "loadProductCategories",
+      "loadMaterialsData"
+    ]),
+    ...mapMutations([
+      "updateMinPrice",
+      "updateMaxPrice",
+      "updateCurrentProductCategories",
+      "updateMaterialsSelected"
+    ]),
     doLoadProductCategories() {
       this.isProductCategoriesLoading = true;
       this.isProductCategoriesLoadingFailed = false;
@@ -241,11 +258,13 @@ export default {
       this.isPriceValid = true;
       this.updateMinPrice(null);
       this.updateMaxPrice(null);
+      this.updateCurrentProductCategories(0);
       this.loadProducts();
     }
   },
   created() {
     this.doLoadProductCategories();
+    this.loadMaterialsData();
   }
 };
 </script>

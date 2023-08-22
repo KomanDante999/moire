@@ -8,10 +8,19 @@ export default createStore({
     products: null,
     currentPagePagination: 1,
     paginationData: null,
+    // filter
     minPrice: null,
     maxPrice: null,
-    productCategories: null,
-    currentProductCategories: 0
+    productCategories: [
+      {
+        id: 0,
+        title: "Все категории",
+        slug: "all-category"
+      }
+    ],
+    currentProductCategories: 0,
+    materialsData: [],
+    materialsSelected: []
   },
   getters: {
     minPrice(state) {
@@ -22,6 +31,9 @@ export default createStore({
     },
     currentProductCategories(state) {
       return state.currentProductCategories;
+    },
+    materialsSelected(state) {
+      return state.materialsSelected;
     }
   },
   mutations: {
@@ -41,10 +53,16 @@ export default createStore({
       state.maxPrice = value;
     },
     updatepPoductCategories(state, data) {
-      state.productCategories = data;
+      state.productCategories = [...state.productCategories, ...data];
     },
     updateCurrentProductCategories(state, value) {
       state.currentProductCategories = value;
+    },
+    updateMaterialsData(state, data) {
+      state.materialsData = data;
+    },
+    updateMaterialsSelected(state, value) {
+      state.materialsSelected = [...state.materialsSelected, ...value];
     }
   },
   actions: {
@@ -57,7 +75,8 @@ export default createStore({
               limit: LIMIT_FOR_PAGINATED,
               minPrice: context.state.minPrice,
               maxPrice: context.state.maxPrice,
-              categoryId: context.state.currentProductCategories
+              categoryId: context.state.currentProductCategories,
+              materialIds: context.state.materialsSelected
             }
           })
           .then((response) => {
@@ -73,6 +92,13 @@ export default createStore({
           .then((response) => {
             context.commit("updatepPoductCategories", response.data.items);
           });
+      });
+    },
+    loadMaterialsData(context) {
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return axios.get(API_BASE_URL + `materials`).then((response) => {
+          context.commit("updateMaterialsData", response.data.items);
+        });
       });
     }
   },
