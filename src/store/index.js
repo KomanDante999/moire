@@ -20,7 +20,9 @@ export default createStore({
     ],
     currentProductCategories: 0,
     materialsData: [],
-    materialsSelected: []
+    materialsSelected: [],
+    seasonsData: [],
+    seasonsSelected: []
   },
   getters: {
     minPrice(state) {
@@ -34,6 +36,9 @@ export default createStore({
     },
     materialsSelected(state) {
       return state.materialsSelected;
+    },
+    seasonsSelected(state) {
+      return state.seasonsSelected;
     }
   },
   mutations: {
@@ -62,7 +67,13 @@ export default createStore({
       state.materialsData = data;
     },
     updateMaterialsSelected(state, value) {
-      state.materialsSelected = [...state.materialsSelected, ...value];
+      state.materialsSelected = value;
+    },
+    updateSeasonsData(state, data) {
+      state.seasonsData = data;
+    },
+    updateSeasonsSelected(state, value) {
+      state.seasonsSelected = value;
     }
   },
   actions: {
@@ -76,7 +87,8 @@ export default createStore({
               minPrice: context.state.minPrice,
               maxPrice: context.state.maxPrice,
               categoryId: context.state.currentProductCategories,
-              materialIds: context.state.materialsSelected
+              materialIds: context.state.materialsSelected,
+              seasonIds: context.state.seasonsSelected
             }
           })
           .then((response) => {
@@ -98,6 +110,13 @@ export default createStore({
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
         return axios.get(API_BASE_URL + `materials`).then((response) => {
           context.commit("updateMaterialsData", response.data.items);
+        });
+      });
+    },
+    loadSeasonsData(context) {
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return axios.get(API_BASE_URL + `seasons`).then((response) => {
+          context.commit("updateSeasonsData", response.data.items);
         });
       });
     }

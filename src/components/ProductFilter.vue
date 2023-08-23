@@ -30,128 +30,20 @@
         </label>
       </fieldset>
 
-      <fieldset class="mb-8">
+      <fieldset v-if="materialsData" class="mb-8">
         <legend class="form-legend">Материал</legend>
-        <ul>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="material"
-                value="лен"
-              />
-              <span class="check-list__desc">
-                лен
-                <span>(3)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="material"
-                value="хлопок"
-              />
-              <span class="check-list__desc">
-                хлопок
-                <span>(46)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="material"
-                value="шерсть"
-              />
-              <span class="check-list__desc">
-                шерсть
-                <span>(20)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="material"
-                value="шелк"
-              />
-              <span class="check-list__desc">
-                шелк
-                <span>(30)</span>
-              </span>
-            </label>
-          </li>
-        </ul>
+        <FormCheckbox
+          :categoriesData="materialsData"
+          v-model:selectedItems="materialsSelectedValue"
+        />
       </fieldset>
 
-      <fieldset class="mb-8">
+      <fieldset v-if="seasonsData" class="mb-8">
         <legend class="form-legend">Коллекция</legend>
-        <ul class="check-list">
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="collection"
-                value="лето"
-              />
-              <span class="check-list__desc">
-                лето
-                <span>(2)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="collection"
-                value="зима"
-              />
-              <span class="check-list__desc">
-                зима
-                <span>(53)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="collection"
-                value="весна"
-              />
-              <span class="check-list__desc">
-                весна
-                <span>(24)</span>
-              </span>
-            </label>
-          </li>
-          <li class="check-list__item">
-            <label class="check-list__label">
-              <input
-                class="check-list__check sr-only"
-                type="checkbox"
-                name="collection"
-                value="осень"
-              />
-              <span class="check-list__desc">
-                осень
-                <span>(30)</span>
-              </span>
-            </label>
-          </li>
-        </ul>
+        <FormCheckbox
+          :categoriesData="seasonsData"
+          v-model:selectedItems="seasonsSelectedValue"
+        />
       </fieldset>
 
       <button
@@ -173,11 +65,12 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import FormCheckbox from "./FormCheckbox.vue";
 import FormSelect from "./FormSelect.vue";
 
 export default {
   name: "ProductFilter",
-  components: { FormSelect },
+  components: { FormSelect, FormCheckbox },
   data() {
     return {
       isPriceValid: true,
@@ -186,12 +79,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productCategories", "materialsData"]),
+    ...mapState(["productCategories", "materialsData", "seasonsData"]),
     ...mapGetters([
       "minPrice",
       "maxPrice",
       "currentProductCategories",
-      "materialsSelected"
+      "materialsSelected",
+      "seasonsSelected"
     ]),
     minPriceValue: {
       get() {
@@ -224,6 +118,14 @@ export default {
       set(value) {
         this.updateMaterialsSelected(value);
       }
+    },
+    seasonsSelectedValue: {
+      get() {
+        return this.seasonsSelected;
+      },
+      set(value) {
+        this.updateSeasonsSelected(value);
+      }
     }
   },
 
@@ -231,13 +133,15 @@ export default {
     ...mapActions([
       "loadProducts",
       "loadProductCategories",
-      "loadMaterialsData"
+      "loadMaterialsData",
+      "loadSeasonsData"
     ]),
     ...mapMutations([
       "updateMinPrice",
       "updateMaxPrice",
       "updateCurrentProductCategories",
-      "updateMaterialsSelected"
+      "updateMaterialsSelected",
+      "updateSeasonsSelected"
     ]),
     doLoadProductCategories() {
       this.isProductCategoriesLoading = true;
@@ -259,12 +163,15 @@ export default {
       this.updateMinPrice(null);
       this.updateMaxPrice(null);
       this.updateCurrentProductCategories(0);
+      this.updateMaterialsSelected([]);
+      this.updateSeasonsSelected([]);
       this.loadProducts();
     }
   },
   created() {
     this.doLoadProductCategories();
     this.loadMaterialsData();
+    this.loadSeasonsData();
   }
 };
 </script>
