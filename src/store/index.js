@@ -22,7 +22,9 @@ export default createStore({
     materialsData: [],
     materialsSelected: [],
     seasonsData: [],
-    seasonsSelected: []
+    seasonsSelected: [],
+    colorsData: [],
+    colorsSelected: []
   },
   getters: {
     minPrice(state) {
@@ -39,6 +41,9 @@ export default createStore({
     },
     seasonsSelected(state) {
       return state.seasonsSelected;
+    },
+    colorsSelected(state) {
+      return state.colorsSelected;
     }
   },
   mutations: {
@@ -74,6 +79,12 @@ export default createStore({
     },
     updateSeasonsSelected(state, value) {
       state.seasonsSelected = value;
+    },
+    updateColorsData(state, data) {
+      state.colorsData = data;
+    },
+    updateColorsSelected(state, value) {
+      state.colorsSelected = value;
     }
   },
   actions: {
@@ -88,7 +99,8 @@ export default createStore({
               maxPrice: context.state.maxPrice,
               categoryId: context.state.currentProductCategories,
               materialIds: context.state.materialsSelected,
-              seasonIds: context.state.seasonsSelected
+              seasonIds: context.state.seasonsSelected,
+              colorIds: context.state.colorsSelected
             }
           })
           .then((response) => {
@@ -117,6 +129,13 @@ export default createStore({
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
         return axios.get(API_BASE_URL + `seasons`).then((response) => {
           context.commit("updateSeasonsData", response.data.items);
+        });
+      });
+    },
+    loadColorsData(context) {
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return axios.get(API_BASE_URL + `colors`).then((response) => {
+          context.commit("updateColorsData", response.data.items);
         });
       });
     }

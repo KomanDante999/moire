@@ -10,6 +10,7 @@
 
     <app-footer />
   </div>
+  <div id="teleport-target" />
 </template>
 
 <style src="./main.css"></style>

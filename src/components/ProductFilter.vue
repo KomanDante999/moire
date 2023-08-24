@@ -30,6 +30,16 @@
         </label>
       </fieldset>
 
+      <fieldset class="mb-8">
+        <legend class="form-legend">Цвет</legend>
+        <label v-if="colorsData" class="filter-label">
+          <FormSelectColorsCheckbox
+            :categoriesData="colorsData"
+            v-model:selectedItems="colorsSelectedValue"
+          />
+        </label>
+      </fieldset>
+
       <fieldset v-if="materialsData" class="mb-8">
         <legend class="form-legend">Материал</legend>
         <FormCheckbox
@@ -67,10 +77,11 @@
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import FormCheckbox from "./FormCheckbox.vue";
 import FormSelect from "./FormSelect.vue";
+import FormSelectColorsCheckbox from "./FormSelectColorsCheckbox.vue";
 
 export default {
   name: "ProductFilter",
-  components: { FormSelect, FormCheckbox },
+  components: { FormSelect, FormCheckbox, FormSelectColorsCheckbox },
   data() {
     return {
       isPriceValid: true,
@@ -79,13 +90,19 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productCategories", "materialsData", "seasonsData"]),
+    ...mapState([
+      "productCategories",
+      "materialsData",
+      "seasonsData",
+      "colorsData"
+    ]),
     ...mapGetters([
       "minPrice",
       "maxPrice",
       "currentProductCategories",
       "materialsSelected",
-      "seasonsSelected"
+      "seasonsSelected",
+      "colorsSelected"
     ]),
     minPriceValue: {
       get() {
@@ -126,6 +143,14 @@ export default {
       set(value) {
         this.updateSeasonsSelected(value);
       }
+    },
+    colorsSelectedValue: {
+      get() {
+        return this.colorsSelected;
+      },
+      set(value) {
+        this.updateColorsSelected(value);
+      }
     }
   },
 
@@ -134,14 +159,16 @@ export default {
       "loadProducts",
       "loadProductCategories",
       "loadMaterialsData",
-      "loadSeasonsData"
+      "loadSeasonsData",
+      "loadColorsData"
     ]),
     ...mapMutations([
       "updateMinPrice",
       "updateMaxPrice",
       "updateCurrentProductCategories",
       "updateMaterialsSelected",
-      "updateSeasonsSelected"
+      "updateSeasonsSelected",
+      "updateColorsSelected"
     ]),
     doLoadProductCategories() {
       this.isProductCategoriesLoading = true;
@@ -165,6 +192,7 @@ export default {
       this.updateCurrentProductCategories(0);
       this.updateMaterialsSelected([]);
       this.updateSeasonsSelected([]);
+      this.updateColorsSelected([]);
       this.loadProducts();
     }
   },
@@ -172,6 +200,7 @@ export default {
     this.doLoadProductCategories();
     this.loadMaterialsData();
     this.loadSeasonsData();
+    this.loadColorsData();
   }
 };
 </script>

@@ -178,7 +178,7 @@
     @apply relative block p-[3px] cursor-pointer focus:outline-none;
   }
   .select-colors__value {
-    @apply block w-5 h-5 rounded-full
+    @apply block w-5 h-5 rounded-full 
     before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:rounded-full before:border before:border-transparent
     before:w-[26px] before:h-[26px] transition-opacity duration-300 before:transition-colors before:duration-300 before:-translate-x-1/2 before:-translate-y-1/2;
   }
@@ -238,6 +238,16 @@
   }
   .product {
     @apply grid grid-cols-5 sm:grid-cols-cart-item gap-y-3 gap-x-2 mob:gap-x-5 md:gap-x-10 lg:gap-x-5 items-center;
+  }
+  .modal__blackout {
+    @apply z-[1010] fixed top-0 left-0 w-full h-full opacity-75 bg-black;
+  }
+  .modal__container {
+    @apply z-[1010]  overflow-auto overflow-x-scroll fixed top-0 left-0 w-full  
+    flex justify-center p-5;
+  }
+  .modal__contant {
+    @apply relative max-w-full mx-auto p-10 bg-gradient-to-b from-orange-100 from-50% to-white;
   }
 }
 .pagination__link--disabled {

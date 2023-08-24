@@ -12,16 +12,18 @@
     <!-- pagination -->
     <BasePaginator />
   </section>
+  <AppModal :open="isProductsLoading" />
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import ProductItem from "@/components/ProductItem.vue";
 import BasePaginator from "@/components/BasePaginator.vue";
+import AppModal from "@/components/AppModal.vue";
 
 export default {
   name: "ProductList",
-  components: { ProductItem, BasePaginator },
+  components: { ProductItem, BasePaginator, AppModal },
   data() {
     return {
       isProductsLoading: false,
