@@ -12,18 +12,21 @@
     <!-- pagination -->
     <BasePaginator />
   </section>
-  <AppModal :open="isProductsLoading" />
+  <LayoutModal :open="isProductsLoading">
+    <LayoutPreloader v-if="!isProductsLoadingFailed" />
+  </LayoutModal>
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import ProductItem from "@/components/ProductItem.vue";
 import BasePaginator from "@/components/BasePaginator.vue";
-import AppModal from "@/components/AppModal.vue";
+import LayoutModal from "./LayoutModal.vue";
+import LayoutPreloader from "./LayoutPreloader.vue";
 
 export default {
   name: "ProductList",
-  components: { ProductItem, BasePaginator, AppModal },
+  components: { ProductItem, BasePaginator, LayoutModal, LayoutPreloader },
   data() {
     return {
       isProductsLoading: false,

@@ -1,14 +1,13 @@
 <template>
   <div class="h-screen grid grid-rows-layout-body">
-    <app-header />
+    <layout-header />
 
     <main>
       <div class="main-container pt-8 pb-20">
         <router-view />
       </div>
     </main>
-
-    <app-footer />
+    <LayoutFooter />
   </div>
   <div id="teleport-target" />
 </template>
@@ -16,11 +15,11 @@
 <style src="./main.css"></style>
 
 <script>
-import AppHeader from "@/components/AppHeader.vue";
-import AppFooter from "@/components/AppFooter.vue";
+import LayoutFooter from "./components/LayoutFooter.vue";
+import LayoutHeader from "./components/LayoutHeader.vue";
 
 export default {
   name: "App",
-  components: { AppHeader, AppFooter }
+  components: { LayoutHeader, LayoutFooter }
 };
 </script>

@@ -10,7 +10,11 @@
 export default {
   name: "FormSelect",
   props: {
-    categoriesData: Array,
+    categoriesData: {
+      type: Array,
+      require: true
+      // default: []
+    },
     selectedItem: {
       type: Number,
       require: true,

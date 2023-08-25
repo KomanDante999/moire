@@ -115,7 +115,8 @@ export default createStore({
           .get(API_BASE_URL + `productCategories`)
           .then((response) => {
             context.commit("updatepPoductCategories", response.data.items);
-          });
+          })
+          .catch();
       });
     },
     loadMaterialsData(context) {

@@ -21,7 +21,7 @@
 
       <fieldset class="mb-8">
         <legend class="form-legend">Категория</legend>
-        <label v-if="productCategories" class="filter-label">
+        <label class="filter-label">
           <FormSelect
             :categoriesData="productCategories"
             v-model:selectedItem="currentProductCategoriesValue"
@@ -32,7 +32,7 @@
 
       <fieldset class="mb-8">
         <legend class="form-legend">Цвет</legend>
-        <label v-if="colorsData" class="filter-label">
+        <label class="filter-label">
           <FormSelectColorsCheckbox
             :categoriesData="colorsData"
             v-model:selectedItems="colorsSelectedValue"
@@ -40,7 +40,7 @@
         </label>
       </fieldset>
 
-      <fieldset v-if="materialsData" class="mb-8">
+      <fieldset class="mb-8">
         <legend class="form-legend">Материал</legend>
         <FormCheckbox
           :categoriesData="materialsData"
@@ -48,7 +48,7 @@
         />
       </fieldset>
 
-      <fieldset v-if="seasonsData" class="mb-8">
+      <fieldset class="mb-8">
         <legend class="form-legend">Коллекция</legend>
         <FormCheckbox
           :categoriesData="seasonsData"
@@ -70,6 +70,9 @@
         Сбросить
       </button>
     </form>
+    <LayoutModal :open="isProductsLoading">
+      <LayoutPreloader />
+    </LayoutModal>
   </aside>
 </template>
 
@@ -78,15 +81,23 @@ import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 import FormCheckbox from "./FormCheckbox.vue";
 import FormSelect from "./FormSelect.vue";
 import FormSelectColorsCheckbox from "./FormSelectColorsCheckbox.vue";
+import LayoutModal from "./LayoutModal.vue";
+import LayoutPreloader from "./LayoutPreloader.vue";
 
 export default {
   name: "ProductFilter",
-  components: { FormSelect, FormCheckbox, FormSelectColorsCheckbox },
+  components: {
+    FormSelect,
+    FormCheckbox,
+    FormSelectColorsCheckbox,
+    LayoutModal,
+    LayoutPreloader
+  },
   data() {
     return {
       isPriceValid: true,
-      isProductCategoriesLoading: false,
-      isProductCategoriesLoadingFailed: false
+      isProductsLoading: false,
+      isProductsLoadingFailed: false
     };
   },
   computed: {
@@ -170,19 +181,19 @@ export default {
       "updateSeasonsSelected",
       "updateColorsSelected"
     ]),
-    doLoadProductCategories() {
-      this.isProductCategoriesLoading = true;
-      this.isProductCategoriesLoadingFailed = false;
-      this.loadProductCategories()
-        .then(() => (this.isProductCategoriesLoading = false))
-        .catch(() => (this.isProductCategoriesLoadingFailed = true))
-        .then(() => (this.isProductCategoriesLoading = false));
+    doLoadingProducts() {
+      this.isProductsLoading = true;
+      this.isProductsLoadingFailed = false;
+      this.loadProducts()
+        .then(() => (this.isProductsLoading = false))
+        .catch(() => (this.isProductsLoadingFailed = true))
+        .then(() => (this.isProductsLoading = false));
     },
     submitFilter() {
       if (this.maxPrice && this.maxPrice && this.maxPrice < this.minPrice) {
         this.isPriceValid = false;
       } else {
-        this.loadProducts();
+        this.doLoadingProducts();
       }
     },
     resetFilter() {
@@ -193,11 +204,11 @@ export default {
       this.updateMaterialsSelected([]);
       this.updateSeasonsSelected([]);
       this.updateColorsSelected([]);
-      this.loadProducts();
+      this.doLoadingProducts();
     }
   },
   created() {
-    this.doLoadProductCategories();
+    this.loadProductCategories();
     this.loadMaterialsData();
     this.loadSeasonsData();
     this.loadColorsData();

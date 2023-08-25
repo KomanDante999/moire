@@ -1,8 +1,17 @@
 <template>
   <teleport v-if="open" to="#teleport-target">
-    <div class="modal__blackout"></div>
-    <div class="modal__container">
-      <div class="modal__contant">
+    <!-- blackout -->
+    <div
+      class="z-[1010] fixed top-0 left-0 w-full h-full opacity-75 bg-black"
+    ></div>
+    <!-- container -->
+    <div
+      class="z-[1020] fixed top-0 left-0 w-full h-full flex justify-center items-center"
+    >
+      <!-- contant -->
+      <div
+        class="relative py-20 px-20 bg-gradient-to-br from-white from-30% to-orange-100"
+      >
         <button
           v-if="visibleBtnClose"
           class="modal__btn-x"
