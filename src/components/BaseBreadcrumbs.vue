@@ -1,19 +1,29 @@
 <template>
   <ul class="flex items-center flex-wrap">
-    <li class="breadcrumbs__item">
-      <a class="breadcrumbs__link" href="index.html"> Каталог </a>
-    </li>
-    <li class="breadcrumbs__item">
-      <a class="breadcrumbs__link" href="#"> Носки </a>
-    </li>
-    <li class="breadcrumbs__item">
-      <a class="breadcrumbs__link"> Носки с принтом мороженое </a>
+    <li
+      v-for="(page, index) in breadcrumbs"
+      :key="index"
+      class="breadcrumbs__item"
+    >
+      <router-link
+        :to="{ name: page.routerName }"
+        :class="{ 'pointer-events-none': page.cursorNone }"
+        class="breadcrumbs__link"
+      >
+        {{ page.titlePage }}
+      </router-link>
     </li>
   </ul>
 </template>
 
 <script>
 export default {
-  name: "BreadCrumbs"
+  name: "BreadCrumbs",
+  props: {
+    breadcrumbs: {
+      type: Array,
+      require: true
+    }
+  }
 };
 </script>

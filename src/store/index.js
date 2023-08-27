@@ -6,6 +6,8 @@ import axios from "axios";
 export default createStore({
   state: {
     products: null,
+    productData: null,
+    currentProductId: null,
     currentPagePagination: 1,
     paginationData: null,
     // filter
@@ -49,6 +51,12 @@ export default createStore({
   mutations: {
     updateProducts(state, data) {
       state.products = data;
+    },
+    updateProductData(state, data) {
+      state.productData = data;
+    },
+    updateCurrentProductId(state, value) {
+      state.currentProductId = value;
     },
     updatePagination(state, data) {
       state.paginationData = data;
@@ -106,6 +114,15 @@ export default createStore({
           .then((response) => {
             context.commit("updateProducts", response.data.items);
             context.commit("updatePagination", response.data.pagination);
+          });
+      });
+    },
+    loadProductData(context) {
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
+        return axios
+          .get(API_BASE_URL + `products/` + `${context.state.currentProductId}`)
+          .then((response) => {
+            context.commit("updateProductData", response.data);
           });
       });
     },
