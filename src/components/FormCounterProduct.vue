@@ -21,5 +21,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "CounterProduct",
+  props: {
+    countProduct: {
+      type: Number,
+      require: true,
+      default: 1
+    }
+  }
+};
 </script>

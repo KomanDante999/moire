@@ -8,6 +8,9 @@ export default createStore({
     products: null,
     productData: null,
     currentProductId: null,
+    currentProductCount: null,
+    currentProductPrice: null,
+    currentProductAmount: null,
     currentPagePagination: 1,
     paginationData: null,
     // filter
@@ -57,6 +60,16 @@ export default createStore({
     },
     updateCurrentProductId(state, value) {
       state.currentProductId = value;
+    },
+    updateCurrentProductCount(state, value) {
+      state.currentProductCount = value;
+      state.mutations.updateCurrentProductAmount(state.currentProductCount);
+    },
+    updateCurrentProductPrice(state, value) {
+      state.currentProductPrice = value;
+    },
+    updateCurrentProductAmount(state, value) {
+      state.currentProductAmount = state.currentProductAmount + value;
     },
     updatePagination(state, data) {
       state.paginationData = data;

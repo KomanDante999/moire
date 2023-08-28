@@ -136,7 +136,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productData"]),
+    ...mapState(["productData", "currentProductAmount"]),
     breadcrumbsData() {
       return [
         {
@@ -157,14 +157,21 @@ export default {
   },
   methods: {
     ...mapActions(["loadProductData"]),
-    ...mapMutations(["updateCurrentProductId"]),
+    ...mapMutations([
+      "updateCurrentProductId",
+      "updateCurrentProductCount",
+      "updateCurrentProductPrice"
+    ]),
     doLoadingProductData() {
       this.isProductLoading = true;
       this.isProductLoadingFailed = false;
       this.loadProductData()
         .then(() => (this.isProductLoading = false))
         .catch(() => (this.isProductLoadingFailed = true))
-        .then(() => (this.isProductLoading = false));
+        .then(() => {
+          this.isProductLoading = false;
+          this.updateCurrentProductPrice(this.productData.price);
+        });
     },
     getGalleryImageUrl() {
       if (
@@ -184,6 +191,7 @@ export default {
   },
   created() {
     this.updateCurrentProductId(this.$route.params.id);
+
     this.doLoadingProductData();
   }
 };
