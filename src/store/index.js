@@ -8,7 +8,7 @@ export default createStore({
     products: null,
     productData: null,
     currentProductId: null,
-    currentProductCount: null,
+    currentProductCount: 1,
     currentProductPrice: null,
     currentProductAmount: null,
     currentPagePagination: 1,
@@ -32,6 +32,13 @@ export default createStore({
     colorsSelected: []
   },
   getters: {
+    currentProductCount(state) {
+      return state.currentProductCount;
+    },
+    currentProductAmount(state) {
+      return (state.currentProductAmount =
+        state.currentProductPrice * state.currentProductCount);
+    },
     minPrice(state) {
       return state.minPrice;
     },
@@ -63,13 +70,9 @@ export default createStore({
     },
     updateCurrentProductCount(state, value) {
       state.currentProductCount = value;
-      state.mutations.updateCurrentProductAmount(state.currentProductCount);
     },
     updateCurrentProductPrice(state, value) {
       state.currentProductPrice = value;
-    },
-    updateCurrentProductAmount(state, value) {
-      state.currentProductAmount = state.currentProductAmount + value;
     },
     updatePagination(state, data) {
       state.paginationData = data;

@@ -43,7 +43,11 @@
       <div>
         <form class="" action="#" method="POST">
           <!-- counter -->
-          <FormCounterProduct class="mb-3" />
+          <FormCounterProduct
+            v-model:countValue="currentProductCount"
+            :amount="currentProductAmount"
+            class="mb-3"
+          />
 
           <div class="flex justify-start items-start mb-9">
             <fieldset class="form__block mr-5">
@@ -116,7 +120,7 @@ import FormSelect from "@/components/FormSelect.vue";
 import FormSelectColors from "@/components/FormSelectColors.vue";
 import LayoutModal from "@/components/LayoutModal.vue";
 import LayoutPreloader from "@/components/LayoutPreloader.vue";
-import { mapActions, mapMutations, mapState } from "vuex";
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 export default {
   name: "ProductView",
@@ -136,7 +140,16 @@ export default {
     };
   },
   computed: {
-    ...mapState(["productData", "currentProductAmount"]),
+    ...mapState(["productData"]),
+    ...mapGetters(["currentProductCount", "currentProductAmount"]),
+    currentProductCountValue: {
+      get() {
+        return this.currentProductCount;
+      },
+      set(value) {
+        this.updateCurrentProductCount(value);
+      }
+    },
     breadcrumbsData() {
       return [
         {
@@ -191,6 +204,7 @@ export default {
   },
   created() {
     this.updateCurrentProductId(this.$route.params.id);
+    // this.updateCurrentProductCount(1);
 
     this.doLoadingProductData();
   }

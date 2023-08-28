@@ -7,7 +7,9 @@
         </svg>
       </button>
 
-      <input class="couter-input" value="1" name="count" />
+      <form @submit.prevent="">
+        <input class="couter-input" v-model.number="countValue" />
+      </form>
 
       <button class="btn-round" type="button" aria-label="Добавить один товар">
         <svg width="12" height="12" fill="currentColor">
@@ -16,7 +18,7 @@
       </button>
     </div>
 
-    <b class="price-counter"> 18 990 ₽ </b>
+    <b class="price-counter"> {{ amount }} ₽ </b>
   </div>
 </template>
 
@@ -24,10 +26,27 @@
 export default {
   name: "CounterProduct",
   props: {
-    countProduct: {
+    count: {
       type: Number,
       require: true,
       default: 1
+    },
+    amount: Number
+  },
+  emits: ["update:count"],
+  computed: {
+    countValue: {
+      get() {
+        return this.count;
+      },
+      set(newValue) {
+        this.updateCount(newValue);
+      }
+    }
+  },
+  methods: {
+    updateCount(value) {
+      this.$emit("update:count", value);
     }
   }
 };
