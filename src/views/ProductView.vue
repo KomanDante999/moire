@@ -54,14 +54,18 @@
               <legend class="form-legend">Цвет</legend>
               <FormSelectColors
                 :colorsData="productData.colors"
-                v-model:currentColorNumber="currentColorNumber"
+                v-model:currentColorNumber="currentProductColorValue"
               />
             </fieldset>
 
             <fieldset class="form__block">
               <legend class="form-legend">Размер</legend>
-              <label class="form__label form__label--small form__label--select">
-                <FormSelect />
+              <label class="block w-24">
+                <FormSelect
+                  :categoriesData="productData.sizes"
+                  v-model:selectedItem="currentProductSizeValue"
+                  class="form-input-style h-9 py-[6px] pr-6 pl-3"
+                />
               </label>
             </fieldset>
           </div>
@@ -141,13 +145,34 @@ export default {
   },
   computed: {
     ...mapState(["productData"]),
-    ...mapGetters(["currentProductCount", "currentProductAmount"]),
+    ...mapGetters([
+      "currentProductCount",
+      "currentProductAmount",
+      "currentProductColor",
+      "currentProductSize"
+    ]),
     currentProductCountValue: {
       get() {
         return this.currentProductCount;
       },
       set(value) {
         this.updateCurrentProductCount(value);
+      }
+    },
+    currentProductColorValue: {
+      get() {
+        return this.currentProductColor;
+      },
+      set(value) {
+        this.updateCurrentProductColor(value);
+      }
+    },
+    currentProductSizeValue: {
+      get() {
+        return this.currentProductSize;
+      },
+      set(value) {
+        this.updateCurrentProductSize(value);
       }
     },
     breadcrumbsData() {
@@ -173,7 +198,9 @@ export default {
     ...mapMutations([
       "updateCurrentProductId",
       "updateCurrentProductCount",
-      "updateCurrentProductPrice"
+      "updateCurrentProductPrice",
+      "updateCurrentProductColor",
+      "updateCurrentProductSize"
     ]),
     doLoadingProductData() {
       this.isProductLoading = true;

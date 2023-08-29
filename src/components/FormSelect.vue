@@ -1,6 +1,6 @@
 <template>
   <select v-model="selectedItemValue" class="form-input-style">
-    <option v-for="item in categoriesData" :key="item.id" :value="item.id">
+    <option v-for="(item, index) in categoriesData" :key="index" :value="index">
       {{ item.title }}
     </option>
   </select>
@@ -13,7 +13,6 @@ export default {
     categoriesData: {
       type: Array,
       require: true
-      // default: []
     },
     selectedItem: {
       type: Number,

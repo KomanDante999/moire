@@ -11,6 +11,8 @@ export default createStore({
     currentProductCount: 1,
     currentProductPrice: null,
     currentProductAmount: null,
+    currentProductColor: 0,
+    currentProductSize: 0,
     currentPagePagination: 1,
     paginationData: null,
     // filter
@@ -32,6 +34,12 @@ export default createStore({
     colorsSelected: []
   },
   getters: {
+    currentProductColor(state) {
+      return state.currentProductColor;
+    },
+    currentProductSize(state) {
+      return state.currentProductSize;
+    },
     currentProductCount(state) {
       return state.currentProductCount;
     },
@@ -73,6 +81,12 @@ export default createStore({
     },
     updateCurrentProductPrice(state, value) {
       state.currentProductPrice = value;
+    },
+    updateCurrentProductColor(state, value) {
+      state.currentProductColor = value;
+    },
+    updateCurrentProductSize(state, value) {
+      state.currentProductSize = value;
     },
     updatePagination(state, data) {
       state.paginationData = data;
@@ -121,7 +135,10 @@ export default createStore({
               limit: LIMIT_FOR_PAGINATED,
               minPrice: context.state.minPrice,
               maxPrice: context.state.maxPrice,
-              categoryId: context.state.currentProductCategories,
+              categoryId:
+                context.state.productCategories[
+                  context.getters.currentProductCategories
+                ].id,
               materialIds: context.state.materialsSelected,
               seasonIds: context.state.seasonsSelected,
               colorIds: context.state.colorsSelected
