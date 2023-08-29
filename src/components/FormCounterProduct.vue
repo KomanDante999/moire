@@ -1,17 +1,28 @@
 <template>
-  <div class="flex justify-center items-center flex-wrap">
+  <div class="flex justify-start items-center flex-wrap">
     <div class="flex items-center w-[150px] h-[70px] mr-5">
-      <button class="btn-round" type="button" aria-label="Убрать один товар">
+      <button
+        @click.prevent="updateCount(countValue - 1)"
+        :class="{ 'button-disabled': count == minValue }"
+        class="btn-round"
+        type="button"
+        aria-label="Убрать один товар"
+      >
         <svg width="12" height="12" fill="currentColor">
           <use xlink:href="#icon-minus"></use>
         </svg>
       </button>
 
-      <form @submit.prevent="">
-        <input class="couter-input" v-model.number="countValue" />
+      <form @submit.prevent="updateCount()">
+        <input v-model.number="countValue" ref="input" class="couter-input" />
       </form>
 
-      <button class="btn-round" type="button" aria-label="Добавить один товар">
+      <button
+        @click.prevent="updateCount(countValue + 1)"
+        class="btn-round"
+        type="button"
+        aria-label="Добавить один товар"
+      >
         <svg width="12" height="12" fill="currentColor">
           <use xlink:href="#icon-plus"></use>
         </svg>
@@ -28,10 +39,17 @@ export default {
   props: {
     count: {
       type: Number,
-      require: true,
-      default: 1
+      require: true
+      // validator: function (value) {
+      //   return !isNaN(parseFloat(value)) && isFinite(value);
+      // }
     },
-    amount: Number
+    amount: Number,
+    minValue: {
+      type: Number,
+      require: false,
+      default: 1
+    }
   },
   emits: ["update:count"],
   computed: {
@@ -46,6 +64,14 @@ export default {
   },
   methods: {
     updateCount(value) {
+      if (
+        value === undefined ||
+        (isNaN(value) && value.toString() !== eval(value).toString()) ||
+        value <= this.minValue - 1
+      ) {
+        this.$refs.input.value = this.minValue;
+        value = this.minValue;
+      }
       this.$emit("update:count", value);
     }
   }

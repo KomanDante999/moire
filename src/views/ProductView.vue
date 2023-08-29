@@ -44,7 +44,7 @@
         <form class="" action="#" method="POST">
           <!-- counter -->
           <FormCounterProduct
-            v-model:countValue="currentProductCount"
+            v-model:count="currentProductCountValue"
             :amount="currentProductAmount"
             class="mb-3"
           />

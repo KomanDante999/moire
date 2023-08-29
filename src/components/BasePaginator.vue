@@ -3,7 +3,7 @@
     <li class="pagination__item mr-6">
       <button
         @click="doUpdateCurrentPage(currentPagePagination - 1)"
-        :class="{ 'pagination__link--disabled': currentPagePagination == 1 }"
+        :class="{ 'button-disabled': currentPagePagination == 1 }"
         :disabled="currentPagePagination == 1"
         class="pagination__link pagination__link--events pagination__link-arrow pagination__link-arrow--events"
         aria-label="Предыдущая страница"
@@ -30,8 +30,7 @@
       <button
         @click="doUpdateCurrentPage(currentPagePagination + 1)"
         :class="{
-          'pagination__link--disabled':
-            currentPagePagination == paginationData.pages
+          'button-disabled': currentPagePagination == paginationData.pages
         }"
         :disabled="currentPagePagination == paginationData.pages"
         class="pagination__link pagination__link--events pagination__link-arrow pagination__link-arrow--events"
