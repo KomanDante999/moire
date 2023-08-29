@@ -80,37 +80,7 @@
       </div>
     </div>
 
-    <div class="md:col-span-2">
-      <ul class="flex items-center border-b border-secondary/60">
-        <li class="tabs__item">
-          <button class="tabs__btn tabs__btn--current">
-            Информация о товаре
-          </button>
-        </li>
-        <li class="tabs__item">
-          <button class="tabs__btn">Доставка и возврат</button>
-        </li>
-      </ul>
-
-      <div class="pt-12">
-        <h3 class="mb-[6px] title-h3">Состав:</h3>
-
-        <p class="mb-5 font-light leading-7">
-          60% хлопок<br />
-          30% полиэстер<br />
-        </p>
-
-        <h3 class="mb-[6px] title-h3">Уход:</h3>
-
-        <p class="mb-5 font-light leading-7">
-          Машинная стирка при макс. 30ºC короткий отжим<br />
-          Гладить при макс. 110ºC<br />
-          Не использовать машинную сушку<br />
-          Отбеливать запрещено<br />
-          Не подвергать химчистке<br />
-        </p>
-      </div>
-    </div>
+    <BaseTabs :infoData="currentProductInfoData" />
   </section>
   <LayoutModal :open="isProductLoading">
     <LayoutPreloader />
@@ -118,13 +88,15 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import { TEMPLATE_PRODUCT_INFO } from "@/configApp";
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
+import BaseTabs from "@/components/BaseTabs.vue";
 import FormCounterProduct from "@/components/FormCounterProduct.vue";
 import FormSelect from "@/components/FormSelect.vue";
 import FormSelectColors from "@/components/FormSelectColors.vue";
 import LayoutModal from "@/components/LayoutModal.vue";
 import LayoutPreloader from "@/components/LayoutPreloader.vue";
-import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
 
 export default {
   name: "ProductView",
@@ -134,13 +106,14 @@ export default {
     BaseBreadcrumbs,
     FormCounterProduct,
     LayoutModal,
-    LayoutPreloader
+    LayoutPreloader,
+    BaseTabs
   },
   data() {
     return {
       isProductLoading: false,
       isProductLoadingFailed: false,
-      currentColorNumber: 0
+      currentProductInfoData: []
     };
   },
   computed: {
@@ -211,28 +184,36 @@ export default {
         .then(() => {
           this.isProductLoading = false;
           this.updateCurrentProductPrice(this.productData.price);
+          this.getCurrentProductInfoData(this.productData.content);
         });
     },
     getGalleryImageUrl() {
       if (
         this.productData.colors &&
-        this.productData.colors[this.currentColorNumber] &&
-        this.productData.colors[this.currentColorNumber].gallery &&
-        this.productData.colors[this.currentColorNumber].gallery[0] &&
-        this.productData.colors[this.currentColorNumber].gallery[0].file &&
-        this.productData.colors[this.currentColorNumber].gallery[0].file.url
+        this.productData.colors[this.currentProductColorValue] &&
+        this.productData.colors[this.currentProductColorValue].gallery &&
+        this.productData.colors[this.currentProductColorValue].gallery[0] &&
+        this.productData.colors[this.currentProductColorValue].gallery[0]
+          .file &&
+        this.productData.colors[this.currentProductColorValue].gallery[0].file
+          .url
       ) {
-        return this.productData.colors[this.currentColorNumber].gallery[0].file
-          .url;
+        return this.productData.colors[this.currentProductColorValue].gallery[0]
+          .file.url;
       } else {
         return "";
+      }
+    },
+    getCurrentProductInfoData(data) {
+      if (data) {
+        this.currentProductInfoData = data;
+      } else {
+        this.currentProductInfoData = TEMPLATE_PRODUCT_INFO;
       }
     }
   },
   created() {
     this.updateCurrentProductId(this.$route.params.id);
-    // this.updateCurrentProductCount(1);
-
     this.doLoadingProductData();
   }
 };
