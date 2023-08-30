@@ -13,7 +13,9 @@
         {{ productData.title }}
       </h3>
     </router-link>
-    <span class="catalog__price"> {{ productData.price }} ₽ </span>
+    <span class="catalog__price">
+      {{ numberFormat(productData.price) }} ₽
+    </span>
     <FormSelectColors
       :colorsData="productData.colors"
       v-model:currentColorNumber="currentColorNumber"
@@ -23,6 +25,7 @@
 
 <script>
 import FormSelectColors from "@/components/FormSelectColors.vue";
+import numberFormat from "@/helpers/numberFormat";
 
 export default {
   name: "ProductItem",
@@ -53,7 +56,8 @@ export default {
       } else {
         return "";
       }
-    }
+    },
+    numberFormat
   }
 };
 </script>

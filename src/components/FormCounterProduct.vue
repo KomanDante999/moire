@@ -29,20 +29,19 @@
       </button>
     </div>
 
-    <b class="price-counter"> {{ amount }} ₽ </b>
+    <b class="price-counter"> {{ numberFormat(amount) }} ₽ </b>
   </div>
 </template>
 
 <script>
+import numberFormat from "@/helpers/numberFormat";
+
 export default {
   name: "CounterProduct",
   props: {
     count: {
       type: Number,
       require: true
-      // validator: function (value) {
-      //   return !isNaN(parseFloat(value)) && isFinite(value);
-      // }
     },
     amount: Number,
     minValue: {
@@ -73,7 +72,8 @@ export default {
         value = this.minValue;
       }
       this.$emit("update:count", value);
-    }
+    },
+    numberFormat
   }
 };
 </script>
