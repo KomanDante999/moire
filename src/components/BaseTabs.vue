@@ -33,9 +33,10 @@
         <ul>
           <li v-for="(contentItem, index) in item.content" :key="index">
             <h3 class="mb-[6px] title-h3">{{ contentItem.subtitle }}</h3>
-            <p class="mb-5 font-light leading-7">
-              {{ contentItem.info }}
-            </p>
+            <p
+              class="mb-5 font-light leading-7"
+              v-html="insertLineBreaks(contentItem.info)"
+            ></p>
           </li>
         </ul>
       </li>
@@ -47,11 +48,7 @@
 export default {
   name: "baseTabs",
   props: {
-    infoData: Array,
-    separator: {
-      type: String,
-      default: ";"
-    }
+    infoData: Array
   },
   data() {
     return {
@@ -77,6 +74,9 @@ export default {
     },
     handleTabSpace(index) {
       this.handleTabEnter(index);
+    },
+    insertLineBreaks(text) {
+      return text.replace(/;/g, "<br>");
     }
   }
 };

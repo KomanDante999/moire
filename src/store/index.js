@@ -31,7 +31,11 @@ export default createStore({
     seasonsData: [],
     seasonsSelected: [],
     colorsData: [],
-    colorsSelected: []
+    colorsSelected: [],
+
+    // basket
+    userAccessKey: null,
+    basketProductsData: []
   },
   getters: {
     currentProductColor(state) {
@@ -189,6 +193,11 @@ export default createStore({
           context.commit("updateColorsData", response.data.items);
         });
       });
+    },
+    // basket
+    loadBasket(context) {
+      context.state.userAccessKey = 0;
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT));
     }
   },
   modules: {}

@@ -3,8 +3,6 @@
     <h1 class="title-main">Каталог</h1>
     <span v-if="paginationData" class="product-count">
       {{ paginationData.total }}
-    </span>
-    <span v-if="paginationData">
       {{ pluralRules(paginationData.total, ["товар", "товара", "товаров"]) }}
     </span>
   </div>
