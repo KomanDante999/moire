@@ -15,11 +15,18 @@
 <style src="./main.css"></style>
 
 <script>
+import { mapActions } from "vuex";
 import LayoutFooter from "./components/LayoutFooter.vue";
 import LayoutHeader from "./components/LayoutHeader.vue";
 
 export default {
   name: "App",
-  components: { LayoutHeader, LayoutFooter }
+  components: { LayoutHeader, LayoutFooter },
+  methods: {
+    ...mapActions(["loadBasket"])
+  },
+  created() {
+    this.loadBasket();
+  }
 };
 </script>

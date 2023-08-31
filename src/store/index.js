@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { API_BASE_URL, TIMEOUT, LIMIT_FOR_PAGINATED } from "@/configApp";
+import { apiLoadProducts, apiLoadProductData } from "@/apiService";
 import "core-js/stable/promise";
 import axios from "axios";
 
@@ -127,40 +128,45 @@ export default createStore({
     },
     updateColorsSelected(state, value) {
       state.colorsSelected = value;
+    },
+    // bascet
+    updateUserAccessKey(state, value) {
+      state.userAccessKey = value;
+    },
+    updateBasketProductsData(state, data) {
+      state.basketProductsData = data;
     }
   },
   actions: {
     loadProducts(context) {
-      return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
-        return axios
-          .get(API_BASE_URL + `products`, {
-            params: {
-              page: context.state.currentPagePagination,
-              limit: LIMIT_FOR_PAGINATED,
-              minPrice: context.state.minPrice,
-              maxPrice: context.state.maxPrice,
-              categoryId:
-                context.state.productCategories[
-                  context.getters.currentProductCategories
-                ].id,
-              materialIds: context.state.materialsSelected,
-              seasonIds: context.state.seasonsSelected,
-              colorIds: context.state.colorsSelected
-            }
-          })
-          .then((response) => {
-            context.commit("updateProducts", response.data.items);
-            context.commit("updatePagination", response.data.pagination);
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT))
+        .then(() => {
+          return apiLoadProducts({
+            page: context.state.currentPagePagination,
+            limit: LIMIT_FOR_PAGINATED,
+            minPrice: context.state.minPrice,
+            maxPrice: context.state.maxPrice,
+            categoryId:
+              context.state.productCategories[
+                context.getters.currentProductCategories
+              ].id,
+            materialIds: context.state.materialsSelected,
+            seasonIds: context.state.seasonsSelected,
+            colorIds: context.state.colorsSelected
           });
-      });
+        })
+        .then((data) => {
+          context.commit("updateProducts", data.items);
+          context.commit("updatePagination", data.pagination);
+        });
     },
     loadProductData(context) {
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
-        return axios
-          .get(API_BASE_URL + `products/` + `${context.state.currentProductId}`)
-          .then((response) => {
-            context.commit("updateProductData", response.data);
-          });
+        return apiLoadProductData(context.state.currentProductId).then(
+          (data) => {
+            context.commit("updateProductData", data);
+          }
+        );
       });
     },
     loadProductCategories(context) {
@@ -195,9 +201,33 @@ export default createStore({
       });
     },
     // basket
+    getUserAccessKeyFromLocal(context) {
+      return (context.state.userAccessKey =
+        localStorage.getItem("userAccessKey"));
+    },
     loadBasket(context) {
-      context.state.userAccessKey = 0;
-      return new Promise((resolve) => setTimeout(resolve, TIMEOUT));
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
+        context.commit("getUserAccessKeyFromLocal");
+        return axios
+          .get(API_BASE_URL + "baskets", {
+            params: {
+              userAccessKey: context.state.userAccessKey
+            }
+          })
+          .then((response) => {
+            if (!context.state.userAccessKey) {
+              localStorage.setItem(
+                "userAccessKey",
+                response.data.user.accessKey
+              );
+              context.commit(
+                "updateUserAccessKey",
+                response.data.user.accessKey
+              );
+            }
+            context.commit("basketProductsData", response.data.items);
+          });
+      });
     }
   },
   modules: {}
