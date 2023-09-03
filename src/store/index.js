@@ -1,6 +1,10 @@
 import { createStore } from "vuex";
 import { API_BASE_URL, TIMEOUT, LIMIT_FOR_PAGINATED } from "@/configApp";
-import { apiLoadProducts, apiLoadProductData } from "@/apiService";
+import {
+  apiLoadProducts,
+  apiLoadProductData,
+  apiLoadFilterData
+} from "@/apiService";
 import "core-js/stable/promise";
 import axios from "axios";
 
@@ -169,34 +173,52 @@ export default createStore({
         );
       });
     },
+    loadFilterData(context) {
+      const filterData = [
+        { paht: "productCategories", mutation: "updatepPoductCategories" },
+        { paht: "materials", mutation: "updateMaterialsData" },
+        { paht: "seasons", mutation: "updateSeasonsData" },
+        { paht: "colors", mutation: "updateColorsData" }
+      ];
+      const promises = [];
+
+      for (const { paht, mutation } of filterData) {
+        const promise = new Promise((resolve) => setTimeout((resolve, 0)))
+          .then(() => apiLoadFilterData(paht))
+          .then((data) => {
+            context.commit(mutation, data.items);
+          });
+
+        promises.push(promise);
+      }
+      return Promise.all(promises);
+    },
+
     loadProductCategories(context) {
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return axios
-          .get(API_BASE_URL + `productCategories`)
-          .then((response) => {
-            context.commit("updatepPoductCategories", response.data.items);
-          })
-          .catch();
+        return apiLoadFilterData("productCategories").then((data) => {
+          context.commit("updatepPoductCategories", data.items);
+        });
       });
     },
     loadMaterialsData(context) {
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return axios.get(API_BASE_URL + `materials`).then((response) => {
-          context.commit("updateMaterialsData", response.data.items);
+        return apiLoadFilterData(`materials`).then((data) => {
+          context.commit("updateMaterialsData", data.items);
         });
       });
     },
     loadSeasonsData(context) {
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return axios.get(API_BASE_URL + `seasons`).then((response) => {
-          context.commit("updateSeasonsData", response.data.items);
+        return apiLoadFilterData(`seasons`).then((data) => {
+          context.commit("updateSeasonsData", data.items);
         });
       });
     },
     loadColorsData(context) {
       return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return axios.get(API_BASE_URL + `colors`).then((response) => {
-          context.commit("updateColorsData", response.data.items);
+        return apiLoadFilterData(`colors`).then((data) => {
+          context.commit("updateColorsData", data.items);
         });
       });
     },
