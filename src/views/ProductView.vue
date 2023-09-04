@@ -41,7 +41,7 @@
       >
       <h2 class="title-h2 mt-3 mb-5">{{ productData.title }}</h2>
       <div>
-        <form class="" action="#" method="POST">
+        <form @submit.prevent="doAddProductToBasket" class="">
           <!-- counter -->
           <FormCounterProduct
             v-model:count="currentProductCountValue"
@@ -167,7 +167,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["loadProductData"]),
+    ...mapActions(["loadProductData", "addProductToBasket"]),
     ...mapMutations([
       "updateCurrentProductId",
       "updateCurrentProductCount",
@@ -210,6 +210,9 @@ export default {
       } else {
         this.currentProductInfoData = TEMPLATE_PRODUCT_INFO;
       }
+    },
+    doAddProductToBasket() {
+      this.addProductToBasket();
     }
   },
   created() {

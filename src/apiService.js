@@ -16,4 +16,40 @@ const apiLoadFilterData = (path) => {
   return axios.get(API_BASE_URL + `${path}`).then((response) => response.data);
 };
 
-export { apiLoadProducts, apiLoadProductData, apiLoadFilterData };
+// basket
+const apiLoadBasket = (key) => {
+  return axios
+    .get(API_BASE_URL + `baskets`, {
+      params: {
+        userAccessKey: key
+      }
+    })
+    .then((response) => response.data);
+};
+
+const apiAddToBasket = (params) => {
+  return axios
+    .post(
+      API_BASE_URL + `baskets/products`,
+      {
+        productId: params.productId,
+        colorId: params.colorId,
+        sizeId: params.sizeId,
+        quantity: params.quantity
+      },
+      {
+        params: {
+          userAccessKey: params.key
+        }
+      }
+    )
+    .then((response) => response.data);
+};
+
+export {
+  apiLoadProducts,
+  apiLoadProductData,
+  apiLoadFilterData,
+  apiLoadBasket,
+  apiAddToBasket
+};

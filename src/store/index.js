@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
-import { API_BASE_URL, TIMEOUT, LIMIT_FOR_PAGINATED } from "@/configApp";
+import { TIMEOUT, LIMIT_FOR_PAGINATED } from "@/configApp";
 import {
   apiLoadProducts,
   apiLoadProductData,
-  apiLoadFilterData
+  apiLoadFilterData,
+  apiLoadBasket,
+  apiAddToBasket
 } from "@/apiService";
 import "core-js/stable/promise";
-import axios from "axios";
+import { Promise } from "core-js";
 
 export default createStore({
   state: {
@@ -187,68 +189,40 @@ export default createStore({
           .then(() => apiLoadFilterData(path))
           .then((data) => {
             context.commit(mutation, data.items);
-            console.log(data.items);
           });
         promises.push(promise);
       }
       return Promise.all(promises);
     },
 
-    loadProductCategories(context) {
-      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return apiLoadFilterData("productCategories").then((data) => {
-          context.commit("updatepPoductCategories", data.items);
-        });
-      });
-    },
-    loadMaterialsData(context) {
-      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return apiLoadFilterData(`materials`).then((data) => {
-          context.commit("updateMaterialsData", data.items);
-        });
-      });
-    },
-    loadSeasonsData(context) {
-      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return apiLoadFilterData(`seasons`).then((data) => {
-          context.commit("updateSeasonsData", data.items);
-        });
-      });
-    },
-    loadColorsData(context) {
-      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
-        return apiLoadFilterData(`colors`).then((data) => {
-          context.commit("updateColorsData", data.items);
-        });
-      });
-    },
     // basket
-    getUserAccessKeyFromLocal(context) {
-      return (context.state.userAccessKey =
-        localStorage.getItem("userAccessKey"));
-    },
     loadBasket(context) {
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
-        context.commit("getUserAccessKeyFromLocal");
-        return axios
-          .get(API_BASE_URL + "baskets", {
-            params: {
-              userAccessKey: context.state.userAccessKey
-            }
-          })
-          .then((response) => {
-            if (!context.state.userAccessKey) {
-              localStorage.setItem(
-                "userAccessKey",
-                response.data.user.accessKey
-              );
-              context.commit(
-                "updateUserAccessKey",
-                response.data.user.accessKey
-              );
-            }
-            context.commit("basketProductsData", response.data.items);
-          });
+        const storedAccessKey = localStorage.getItem("userAccessKey");
+        if (storedAccessKey && !context.state.userAccessKey) {
+          context.commit("updateUserAccessKey", storedAccessKey);
+        }
+        return apiLoadBasket(context.state.userAccessKey).then((data) => {
+          if (!context.state.userAccessKey) {
+            localStorage.setItem("userAccessKey", data.user.accessKey);
+            context.commit("updateUserAccessKey", data.user.accessKey);
+          }
+          context.commit("updateBasketProductsData", data.items);
+        });
+      });
+    },
+    addProductToBasket(context) {
+      const currentProductParams = {
+        key: context.state.userAccessKey,
+        productId: context.state.currentProductId,
+        colorId: context.state.currentProductColor,
+        sizeId: context.state.currentProductSize,
+        quantity: context.state.currentProductCount
+      };
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
+        return apiAddToBasket(currentProductParams).then((data) => {
+          context.commit("updateBasketProductsData", data.items);
+        });
       });
     }
   },
