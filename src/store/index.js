@@ -175,20 +175,20 @@ export default createStore({
     },
     loadFilterData(context) {
       const filterData = [
-        { paht: "productCategories", mutation: "updatepPoductCategories" },
-        { paht: "materials", mutation: "updateMaterialsData" },
-        { paht: "seasons", mutation: "updateSeasonsData" },
-        { paht: "colors", mutation: "updateColorsData" }
+        { path: "productCategories", mutation: "updatepPoductCategories" },
+        { path: "materials", mutation: "updateMaterialsData" },
+        { path: "seasons", mutation: "updateSeasonsData" },
+        { path: "colors", mutation: "updateColorsData" }
       ];
       const promises = [];
 
-      for (const { paht, mutation } of filterData) {
-        const promise = new Promise((resolve) => setTimeout((resolve, 0)))
-          .then(() => apiLoadFilterData(paht))
+      for (const { path, mutation } of filterData) {
+        const promise = new Promise((resolve) => setTimeout(resolve, 0))
+          .then(() => apiLoadFilterData(path))
           .then((data) => {
             context.commit(mutation, data.items);
+            console.log(data.items);
           });
-
         promises.push(promise);
       }
       return Promise.all(promises);

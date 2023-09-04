@@ -167,6 +167,7 @@ export default {
 
   methods: {
     ...mapActions([
+      "loadFilterData",
       "loadProducts",
       "loadProductCategories",
       "loadMaterialsData",
@@ -208,10 +209,11 @@ export default {
     }
   },
   created() {
-    this.loadProductCategories();
-    this.loadMaterialsData();
-    this.loadSeasonsData();
-    this.loadColorsData();
+    this.loadFilterData();
+    // this.loadProductCategories();
+    // this.loadMaterialsData();
+    // this.loadSeasonsData();
+    // this.loadColorsData();
   }
 };
 </script>
