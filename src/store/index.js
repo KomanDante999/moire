@@ -215,10 +215,14 @@ export default createStore({
       const currentProductParams = {
         key: context.state.userAccessKey,
         productId: context.state.currentProductId,
-        colorId: context.state.currentProductColor,
-        sizeId: context.state.currentProductSize,
+        colorId:
+          context.state.productData.colors[context.state.currentProductColor]
+            .color.id,
+        sizeId:
+          context.state.productData.sizes[context.state.currentProductSize].id,
         quantity: context.state.currentProductCount
       };
+      console.log(currentProductParams);
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
         return apiAddToBasket(currentProductParams).then((data) => {
           context.commit("updateBasketProductsData", data.items);

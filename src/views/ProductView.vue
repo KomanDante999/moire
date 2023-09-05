@@ -185,6 +185,9 @@ export default {
           this.isProductLoading = false;
           this.updateCurrentProductPrice(this.productData.price);
           this.getCurrentProductInfoData(this.productData.content);
+          this.updateCurrentProductCount(1);
+          this.updateCurrentProductColor(0);
+          this.updateCurrentProductSize(0);
         });
     },
     getGalleryImageUrl() {

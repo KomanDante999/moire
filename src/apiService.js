@@ -32,10 +32,10 @@ const apiAddToBasket = (params) => {
     .post(
       API_BASE_URL + `baskets/products`,
       {
-        productId: params.productId,
-        colorId: params.colorId,
-        sizeId: params.sizeId,
-        quantity: params.quantity
+        productId: `${params.productId}`,
+        colorId: `${params.colorId}`,
+        sizeId: `${params.sizeId}`,
+        quantity: `${params.quantity}`
       },
       {
         params: {
