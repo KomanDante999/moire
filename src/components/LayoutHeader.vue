@@ -95,7 +95,7 @@
         </a>
         <!-- cart -->
         <router-link
-          :to="{ name: 'cart' }"
+          :to="{ name: 'basket' }"
           class="order-4 block relative w-[25px] h-[27px]"
           aria-label="Корзина с товарами"
         >
