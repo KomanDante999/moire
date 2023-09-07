@@ -27,6 +27,7 @@
     />
 
     <button
+      @click.prevent="doDeleteProductBasket"
       class="button-del"
       type="button"
       aria-label="Удалить товар из корзины"
@@ -52,12 +53,13 @@
 <script>
 import FormCounterProduct from "@/components/FormCounterProduct.vue";
 import numberFormat from "@/helpers/numberFormat";
+import { mapActions } from "vuex";
 
 export default {
   name: "BasketItem",
   components: { FormCounterProduct },
   props: {
-    basketProductData: Array
+    basketProductData: Object
   },
   data() {
     return { currentProductCount: this.basketProductData.quantity };
@@ -68,11 +70,29 @@ export default {
         return this.currentProductCount;
       },
       set(value) {
-        this.updateCurrentProductCount(value);
+        this.currentProductCount = value;
+        this.doUpdateBasket();
       }
+    },
+    currentProductAmount() {
+      return this.basketProductData.price * this.currentProductCountValue;
     }
   },
   methods: {
+    ...mapActions(["updateBasket", "deleteProductBasket"]),
+    doUpdateBasket() {
+      const params = {
+        productId: this.basketProductData.id,
+        count: this.currentProductCountValue
+      };
+      this.updateBasket(params);
+    },
+    doDeleteProductBasket() {
+      const params = {
+        productId: this.basketProductData.id
+      };
+      this.deleteProductBasket(params);
+    },
     getGalleryImageUrl() {
       if (
         this.basketProductData.color &&

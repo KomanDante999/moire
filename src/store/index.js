@@ -5,7 +5,9 @@ import {
   apiLoadProductData,
   apiLoadFilterData,
   apiLoadBasket,
-  apiAddToBasket
+  apiAddToBasket,
+  apiUpdateBasket,
+  apiDeleteProductBasket
 } from "@/apiService";
 import "core-js/stable/promise";
 import { Promise } from "core-js";
@@ -222,9 +224,31 @@ export default createStore({
           context.state.productData.sizes[context.state.currentProductSize].id,
         quantity: context.state.currentProductCount
       };
-      console.log(currentProductParams);
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
         return apiAddToBasket(currentProductParams).then((data) => {
+          context.commit("updateBasketProductsData", data.items);
+        });
+      });
+    },
+    updateBasket(context, value) {
+      const currentProductParams = {
+        key: context.state.userAccessKey,
+        productId: value.productId,
+        quantity: value.count
+      };
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return apiUpdateBasket(currentProductParams).then((data) => {
+          context.commit("updateBasketProductsData", data.items);
+        });
+      });
+    },
+    deleteProductBasket(context, value) {
+      const currentProductParams = {
+        key: context.state.userAccessKey,
+        productId: value.productId
+      };
+      return new Promise((resolve) => setTimeout(resolve, 0)).then(() => {
+        return apiDeleteProductBasket(currentProductParams).then((data) => {
           context.commit("updateBasketProductsData", data.items);
         });
       });

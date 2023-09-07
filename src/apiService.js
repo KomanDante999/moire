@@ -46,10 +46,39 @@ const apiAddToBasket = (params) => {
     .then((response) => response.data);
 };
 
+const apiUpdateBasket = (params) => {
+  return axios
+    .put(
+      API_BASE_URL + `baskets/products`,
+      {
+        basketItemId: `${params.productId}`,
+        quantity: `${params.quantity}`
+      },
+      {
+        params: {
+          userAccessKey: params.key
+        }
+      }
+    )
+    .then((response) => response.data);
+};
+
+const apiDeleteProductBasket = (params) => {
+  console.log(params);
+  return axios
+    .delete(API_BASE_URL + `baskets/products`, {
+      params: { userAccessKey: params.key },
+      data: { basketItemId: `${params.productId}` }
+    })
+    .then((response) => response.data);
+};
+
 export {
   apiLoadProducts,
   apiLoadProductData,
   apiLoadFilterData,
   apiLoadBasket,
-  apiAddToBasket
+  apiAddToBasket,
+  apiUpdateBasket,
+  apiDeleteProductBasket
 };
