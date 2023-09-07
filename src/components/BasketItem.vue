@@ -9,15 +9,22 @@
         <p class="mr-2 text-sm leading-none text-neutral-500">Цвет:</p>
         <i
           class="mr-2 block w-5 h-5 rounded-full"
-          style="background-color: #ff9b78"
+          :style="{ backgroundColor: basketProductData.color.color.code }"
         ></i>
-        <span class="text-sm leading-none text-primary"> Персиковый </span>
+        <span class="text-sm leading-none text-primary">
+          {{ basketProductData.color.color.title }}
+        </span>
       </div>
-      <span class="text-xs text-b9b9b9"> Артикул: 1501230 </span>
+      <span class="text-xs text-b9b9b9">
+        Артикул: {{ basketProductData.id }}
+      </span>
     </div>
 
-    <FormCounterProduct />
-    <!-- <FormCounterProduct class="col-start-1 col-span-4 sm:col-auto title-base" /> -->
+    <FormCounterProduct
+      v-model:count="currentProductCountValue"
+      :amount="currentProductAmount"
+      class="col-start-1 col-span-4 sm:col-auto title-base"
+    />
 
     <button
       class="button-del"
@@ -51,6 +58,19 @@ export default {
   components: { FormCounterProduct },
   props: {
     basketProductData: Array
+  },
+  data() {
+    return { currentProductCount: this.basketProductData.quantity };
+  },
+  computed: {
+    currentProductCountValue: {
+      get() {
+        return this.currentProductCount;
+      },
+      set(value) {
+        this.updateCurrentProductCount(value);
+      }
+    }
   },
   methods: {
     getGalleryImageUrl() {
