@@ -1,10 +1,13 @@
 <template>
   <div class="mb-9">
-    <BaseBreadcrumbs />
+    <BaseBreadcrumbs :breadcrumbs="breadcrumbsData" />
 
     <div class="flex items-center">
       <h1 class="title-main">Корзина</h1>
-      <span class="product-count"> 3 товара </span>
+      <span class="product-count">
+        {{ basketTotalItems }}
+        {{ pluralRules(basketTotalItems, ["товар", "товара", "товаров"]) }}
+      </span>
     </div>
   </div>
 
@@ -28,15 +31,22 @@
           Мы&nbsp;посчитаем стоимость доставки на&nbsp;следующем этапе
         </p>
         <p class="mb-9 text-3xl leading-[48px]">
-          Итого: <span class="font-medium text-[34px]">4 070 ₽</span>
+          Итого:
+          <span class="font-medium text-[34px]">
+            {{ numberFormat(basketTotalAmount) }} ₽</span
+          >
         </p>
 
-        <button
-          class="w-full bg-alarm button-style button-primary"
-          type="submit"
-        >
-          Оформить заказ
-        </button>
+        <router-link custom :to="{ name: 'order' }" v-slot="{ navigate }">
+          <button
+            @click="navigate"
+            :class="{ 'button-disabled': basketTotalItems == 0 }"
+            class="w-full bg-alarm button-style button-primary"
+            type="submit"
+          >
+            Оформить заказ
+          </button>
+        </router-link>
       </div>
     </form>
   </section>
@@ -45,13 +55,32 @@
 <script>
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
 import BasketItem from "@/components/BasketItem.vue";
-import { mapState } from "vuex";
-
+import { mapGetters, mapState } from "vuex";
+import numberFormat from "@/helpers/numberFormat";
+import pluralRules from "@/helpers/pluralRules";
 export default {
   name: "CartView",
   components: { BaseBreadcrumbs, BasketItem },
   computed: {
-    ...mapState(["basketProductsData"])
+    ...mapState(["basketProductsData"]),
+    ...mapGetters(["basketTotalAmount", "basketTotalItems"]),
+    breadcrumbsData() {
+      return [
+        {
+          titlePage: "Каталог",
+          routerName: "home"
+        },
+        {
+          titlePage: "Корзина",
+          routerName: "",
+          cursorNone: true
+        }
+      ];
+    }
+  },
+  methods: {
+    numberFormat,
+    pluralRules
   }
 };
 </script>

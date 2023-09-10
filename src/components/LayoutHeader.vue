@@ -105,7 +105,8 @@
           <span
             class="absolute right-0 bottom-0 block min-w-[13px] h-[13px] p-1 bg-alarm rounded-full text-white text-center font-medium text-[7px] leading-none"
             aria-label="Количество товаров"
-            >3</span
+          >
+            {{ basketTotalItems }}</span
           >
         </router-link>
       </div>
@@ -114,5 +115,12 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  name: "layoutHeader",
+  computed: {
+    ...mapGetters(["basketTotalItems"])
+  }
+};
 </script>

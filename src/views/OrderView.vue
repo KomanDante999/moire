@@ -1,6 +1,6 @@
 <template>
   <div class="mb-9">
-    <BaseBreadcrumbs />
+    <BaseBreadcrumbs :breadcrumbs="breadcrumbsData" />
 
     <h1 class="title-main">Оформление заказа</h1>
   </div>
@@ -11,11 +11,44 @@
     >
       <div class="row-span-2">
         <div class="grid grid-cols-2 gap-y-1 gap-x-7 mb-9">
-          <FormInput class="order-label col-span-2" />
-          <FormInput class="order-label col-span-2" />
-          <FormInput class="order-label" />
-          <FormInput class="order-label" />
-          <FormTextarea class="order-label col-span-2" />
+          <FormInput
+            v-model:value="userDataValue.name"
+            cuption="ФИО"
+            placeholder="Введите ваше полное имя"
+            errorMessage=""
+            :isError="false"
+            class="order-label col-span-2"
+          />
+          <FormInput
+            v-model:value="userDataValue.address"
+            cuption="Адрес доставки"
+            placeholder="Введите ваш адрес"
+            errorMessage=""
+            :isError="false"
+            class="order-label col-span-2"
+          />
+          <FormInput
+            v-model:value="userDataValue.phone"
+            cuption="Телефон"
+            placeholder="Введите ваш телефон"
+            errorMessage=""
+            :isError="false"
+            class="order-label"
+          />
+          <FormInput
+            v-model:value="userDataValue.email"
+            cuption="Email"
+            placeholder="Введи ваш Email"
+            errorMessage=""
+            :isError="false"
+            class="order-label"
+          />
+          <FormTextarea
+            v-model:value="userDataValue.comment"
+            cuption="Комментарий к заказу"
+            placeholder="Ваши пожелания"
+            class="order-label col-span-2"
+          />
         </div>
 
         <div>
@@ -126,9 +159,42 @@
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
 import FormInput from "@/components/FormInput.vue";
 import FormTextarea from "@/components/FormTextarea.vue";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "OrderView",
-  components: { BaseBreadcrumbs, FormInput, FormTextarea }
+  components: { BaseBreadcrumbs, FormInput, FormTextarea },
+  computed: {
+    ...mapState(["userData"]),
+
+    userDataValue: {
+      get() {
+        return this.userData;
+      },
+      set(newValue) {
+        this.updateUserData(newValue);
+      }
+    },
+    breadcrumbsData() {
+      return [
+        {
+          titlePage: "Каталог",
+          routerName: "home"
+        },
+        {
+          titlePage: "Корзина",
+          routerName: "basket"
+        },
+        {
+          titlePage: "Оформление заказа",
+          routerName: "",
+          cursorNone: true
+        }
+      ];
+    }
+  },
+  methods: {
+    ...mapMutations(["updateUserData"])
+  }
 };
 </script>

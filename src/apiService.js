@@ -64,7 +64,6 @@ const apiUpdateBasket = (params) => {
 };
 
 const apiDeleteProductBasket = (params) => {
-  console.log(params);
   return axios
     .delete(API_BASE_URL + `baskets/products`, {
       params: { userAccessKey: params.key },

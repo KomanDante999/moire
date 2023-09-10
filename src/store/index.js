@@ -44,7 +44,16 @@ export default createStore({
 
     // basket
     userAccessKey: null,
-    basketProductsData: []
+    basketProductsData: [],
+    userData: {
+      name: "",
+      address: "",
+      phone: "",
+      email: "",
+      deliveryTypeId: 0,
+      paymentTypeId: 0,
+      comment: ""
+    }
   },
   getters: {
     currentProductColor(state) {
@@ -77,6 +86,15 @@ export default createStore({
     },
     colorsSelected(state) {
       return state.colorsSelected;
+    },
+    // basket
+    basketTotalAmount(state) {
+      return state.basketProductsData.reduce((accumulator, item) => {
+        return accumulator + item.price * item.quantity;
+      }, 0);
+    },
+    basketTotalItems(state) {
+      return state.basketProductsData.length;
     }
   },
   mutations: {
@@ -143,6 +161,15 @@ export default createStore({
     },
     updateBasketProductsData(state, data) {
       state.basketProductsData = data;
+    },
+    updateUserData(state, data) {
+      state.userData.name = data.name;
+      state.userData.address = data.address;
+      state.userData.phone = data.phone;
+      state.userData.email = data.email;
+      state.userData.deliveryTypeId = data.deliveryTypeId;
+      state.userData.paymentTypeId = data.paymentTypeId;
+      state.userData.comment = data.comment;
     }
   },
   actions: {
