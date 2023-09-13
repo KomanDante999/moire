@@ -61,7 +61,7 @@
                   type="radio"
                   name="delivery"
                   value="0"
-                  checked="false"
+                  checked="true"
                 />
                 <span class="order-options-caption">
                   Самовывоз <b>бесплатно</b>
