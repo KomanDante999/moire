@@ -7,6 +7,7 @@
 
   <section>
     <form
+      @submit.prevent="createOrder"
       class="grid grid-rows-layout-order grid-cols-layout-order gap-y-5 gap-x-12"
     >
       <div class="row-span-2">
@@ -159,13 +160,13 @@
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
 import FormInput from "@/components/FormInput.vue";
 import FormTextarea from "@/components/FormTextarea.vue";
-import { mapMutations, mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "OrderView",
   components: { BaseBreadcrumbs, FormInput, FormTextarea },
   computed: {
-    ...mapState(["userData"]),
+    ...mapState(["userData", "orderErrorsData"]),
 
     userDataValue: {
       get() {
@@ -194,7 +195,12 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["updateUserData"])
+    ...mapMutations(["updateUserData"]),
+    ...mapActions(["createOrder"]),
+    doCreateOrder() {
+      const formData = {};
+      this.createOrder(formData);
+    }
   }
 };
 </script>

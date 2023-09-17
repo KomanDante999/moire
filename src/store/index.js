@@ -7,7 +7,8 @@ import {
   apiLoadBasket,
   apiAddToBasket,
   apiUpdateBasket,
-  apiDeleteProductBasket
+  apiDeleteProductBasket,
+  apiCreateOrder
 } from "@/apiService";
 import "core-js/stable/promise";
 import { Promise } from "core-js";
@@ -45,6 +46,7 @@ export default createStore({
     // basket
     userAccessKey: null,
     basketProductsData: [],
+    // order
     userData: {
       name: "",
       address: "",
@@ -53,7 +55,8 @@ export default createStore({
       deliveryTypeId: 0,
       paymentTypeId: 0,
       comment: ""
-    }
+    },
+    orderErrorsData: {}
   },
   getters: {
     currentProductColor(state) {
@@ -162,6 +165,7 @@ export default createStore({
     updateBasketProductsData(state, data) {
       state.basketProductsData = data;
     },
+    // order
     updateUserData(state, data) {
       state.userData.name = data.name;
       state.userData.address = data.address;
@@ -170,6 +174,9 @@ export default createStore({
       state.userData.deliveryTypeId = data.deliveryTypeId;
       state.userData.paymentTypeId = data.paymentTypeId;
       state.userData.comment = data.comment;
+    },
+    updateOrderErrorsData(state, error) {
+      state.orderErrorsData = error;
     }
   },
   actions: {
@@ -278,6 +285,25 @@ export default createStore({
         return apiDeleteProductBasket(currentProductParams).then((data) => {
           context.commit("updateBasketProductsData", data.items);
         });
+      });
+    },
+    // order
+    createOrder(context) {
+      context.commit("updateOrderErrorsData", {});
+      const orderParams = {
+        key: context.state.userAccessKey,
+        formData: context.userData
+      };
+      return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
+        return apiCreateOrder(orderParams)
+          .then((data) => {
+            console.log("then", data);
+            context.commit("updateUserData", data);
+          })
+          .catch((error) => {
+            console.log("catch", error);
+            context.commit("updateOrderErrorsData", error);
+          });
       });
     }
   },

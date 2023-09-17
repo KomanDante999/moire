@@ -72,6 +72,25 @@ const apiDeleteProductBasket = (params) => {
     .then((response) => response.data);
 };
 
+const apiCreateOrder = (params) => {
+  return axios
+    .post(
+      API_BASE_URL + "orders",
+      {
+        ...params.formData
+      },
+      {
+        params: {
+          userAccessKey: params.key
+        }
+      }
+    )
+    .then((response) => response.data)
+    .catch((error) => {
+      throw error.response.data.error.request;
+    });
+};
+
 export {
   apiLoadProducts,
   apiLoadProductData,
@@ -79,5 +98,6 @@ export {
   apiLoadBasket,
   apiAddToBasket,
   apiUpdateBasket,
-  apiDeleteProductBasket
+  apiDeleteProductBasket,
+  apiCreateOrder
 };
