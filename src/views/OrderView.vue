@@ -16,32 +16,28 @@
             v-model:value="userDataValue.name"
             cuption="ФИО"
             placeholder="Введите ваше полное имя"
-            errorMessage=""
-            :isError="false"
+            :errorMessage="orderErrorsData.name"
             class="order-label col-span-2"
           />
           <FormInput
             v-model:value="userDataValue.address"
             cuption="Адрес доставки"
             placeholder="Введите ваш адрес"
-            errorMessage=""
-            :isError="false"
+            :errorMessage="orderErrorsData.address"
             class="order-label col-span-2"
           />
           <FormInput
             v-model:value="userDataValue.phone"
             cuption="Телефон"
             placeholder="Введите ваш телефон"
-            errorMessage=""
-            :isError="false"
+            :errorMessage="orderErrorsData.phone"
             class="order-label"
           />
           <FormInput
             v-model:value="userDataValue.email"
             cuption="Email"
             placeholder="Введи ваш Email"
-            errorMessage=""
-            :isError="false"
+            :errorMessage="orderErrorsData.email"
             class="order-label"
           />
           <FormTextarea
@@ -54,66 +50,9 @@
 
         <div>
           <h3 class="title-order-h3 mb-5">Доставка</h3>
-          <ul class="grid grid-cols-2 gap-x-7 mb-10">
-            <li>
-              <label class="order-options-label">
-                <input
-                  class="order-options-radio sr-only"
-                  type="radio"
-                  name="delivery"
-                  value="0"
-                  checked="true"
-                />
-                <span class="order-options-caption">
-                  Самовывоз <b>бесплатно</b>
-                </span>
-              </label>
-            </li>
-            <li>
-              <label class="order-options-label">
-                <input
-                  class="order-options-radio sr-only"
-                  type="radio"
-                  name="delivery"
-                  value="500"
-                />
-                <span class="order-options-caption">
-                  Курьером <b>290 ₽</b>
-                </span>
-              </label>
-            </li>
-          </ul>
-
+          <FormRadioOrder />
           <h3 class="title-order-h3 mb-5">Оплата</h3>
-          <ul class="grid grid-cols-2 gap-x-7">
-            <li>
-              <label class="order-options-label">
-                <input
-                  class="order-options-radio sr-only"
-                  type="radio"
-                  name="pay"
-                  value="card"
-                  checked="false"
-                />
-                <span class="order-options-caption">
-                  Картой при получении
-                </span>
-              </label>
-            </li>
-            <li>
-              <label class="order-options-label">
-                <input
-                  class="order-options-radio sr-only"
-                  type="radio"
-                  name="pay"
-                  value="cash"
-                />
-                <span class="order-options-caption">
-                  Наличными при получении
-                </span>
-              </label>
-            </li>
-          </ul>
+          <FormRadioOrder />
         </div>
       </div>
 
@@ -159,12 +98,13 @@
 <script>
 import BaseBreadcrumbs from "@/components/BaseBreadcrumbs.vue";
 import FormInput from "@/components/FormInput.vue";
+import FormRadioOrder from "@/components/FormRadioOrder.vue";
 import FormTextarea from "@/components/FormTextarea.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
   name: "OrderView",
-  components: { BaseBreadcrumbs, FormInput, FormTextarea },
+  components: { BaseBreadcrumbs, FormInput, FormTextarea, FormRadioOrder },
   computed: {
     ...mapState(["userData", "orderErrorsData"]),
 

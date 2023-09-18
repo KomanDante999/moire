@@ -48,13 +48,13 @@ export default createStore({
     basketProductsData: [],
     // order
     userData: {
-      name: "",
-      address: "",
-      phone: "",
-      email: "",
+      name: "Илларион Афанасьевич Линдер",
+      address: "Третий рукав галлактической спирали",
+      phone: "+79131992277",
+      email: "zymer@trabler.ru",
       deliveryTypeId: 0,
       paymentTypeId: 0,
-      comment: ""
+      comment: "да ни кто комменты не читает"
     },
     orderErrorsData: {}
   },
@@ -292,16 +292,15 @@ export default createStore({
       context.commit("updateOrderErrorsData", {});
       const orderParams = {
         key: context.state.userAccessKey,
-        formData: context.userData
+        formData: context.state.userData
       };
+      console.log(orderParams);
       return new Promise((resolve) => setTimeout(resolve, TIMEOUT)).then(() => {
         return apiCreateOrder(orderParams)
           .then((data) => {
-            console.log("then", data);
             context.commit("updateUserData", data);
           })
           .catch((error) => {
-            console.log("catch", error);
             context.commit("updateOrderErrorsData", error);
           });
       });

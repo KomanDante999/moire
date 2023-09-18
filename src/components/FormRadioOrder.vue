@@ -14,5 +14,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "FormRadioOrder",
+  props: {
+    categoriesData: Array,
+    selectedItem: {
+      type: String,
+      require: true
+    }
+  },
+  emits: ["update:selectedItem"],
+  computed: {
+    selectedItemValue: {
+      get() {
+        return this.selectedItem;
+      },
+      set(newValue) {
+        this.$emit("update:selectedItem", newValue);
+      }
+    }
+  }
+};
 </script>

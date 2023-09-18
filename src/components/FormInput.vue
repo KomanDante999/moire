@@ -7,7 +7,7 @@
       :placeholder="placeholder"
     />
     <span class="filter-cuption"> {{ cuption }}</span>
-    <span v-if="isError" class="input-error"> {{ errorMessage }} </span>
+    <span v-if="errorMessage" class="input-error"> {{ errorMessage }} </span>
   </label>
 </template>
 
@@ -24,10 +24,6 @@ export default {
     errorMessage: {
       type: String,
       default: ""
-    },
-    isError: {
-      type: Boolean,
-      default: false
     }
   },
   emits: ["update:value"],
