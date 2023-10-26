@@ -1,13 +1,15 @@
 <template>
   <ul class="grid grid-cols-2 gap-x-7 mb-10">
-    <li>
+    <li v-for="item in categoriesData" :key="item.id">
       <label class="order-options-label">
         <input
           class="order-options-radio sr-only"
           type="radio"
-          checked="true"
+          :checked="item.checked"
+          :value="item.id"
+          v-model="selectedItemValue"
         />
-        <span class="order-options-caption"> Самовывоз <b>бесплатно</b> </span>
+        <span v-html="item.name" class="order-options-caption"></span>
       </label>
     </li>
   </ul>
@@ -32,6 +34,11 @@ export default {
       set(newValue) {
         this.$emit("update:selectedItem", newValue);
       }
+    }
+  },
+  methods: {
+    insertTagBold(text) {
+      return text.replace(/;/g, "<b>");
     }
   }
 };

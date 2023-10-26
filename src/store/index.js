@@ -56,6 +56,30 @@ export default createStore({
       paymentTypeId: 0,
       comment: "да ни кто комменты не читает"
     },
+    deliveryType: [
+      {
+        name: "Самовывоз <b>бесплатно</b>",
+        id: 0,
+        checked: true
+      },
+      {
+        name: "Курьером <b>290 ₽</b>",
+        id: 1,
+        checked: false
+      }
+    ],
+    paymentType: [
+      {
+        name: "Картой при получении",
+        id: 0,
+        checked: true
+      },
+      {
+        name: "Наличными при получении",
+        id: 1,
+        checked: false
+      }
+    ],
     orderErrorsData: {}
   },
   getters: {

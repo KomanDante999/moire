@@ -50,9 +50,9 @@
 
         <div>
           <h3 class="title-order-h3 mb-5">Доставка</h3>
-          <FormRadioOrder />
+          <FormRadioOrder :categoriesData="deliveryType" />
           <h3 class="title-order-h3 mb-5">Оплата</h3>
-          <FormRadioOrder />
+          <FormRadioOrder :categoriesData="paymentType" />
         </div>
       </div>
 
@@ -106,7 +106,7 @@ export default {
   name: "OrderView",
   components: { BaseBreadcrumbs, FormInput, FormTextarea, FormRadioOrder },
   computed: {
-    ...mapState(["userData", "orderErrorsData"]),
+    ...mapState(["userData", "orderErrorsData", "deliveryType", "paymentType"]),
 
     userDataValue: {
       get() {
